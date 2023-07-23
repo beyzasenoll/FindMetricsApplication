@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Metrics</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Metrics Report</h1>
+
+<h2>Existing Metrics</h2>
+<table>
+    <tr>
+        <th>Metrics</th>
+    </tr>
+    <tr th:each="existingAlgorithm : ${existingAlgorithms}">
+        <td th:text="${existingAlgorithm}"></td>
+    </tr>
+</table>
+
+<h2>Non-Existing Metrics</h2>
+<table>
+    <tr>
+        <th>Metrics</th>
+    </tr>
+    <tr th:each="nonExistingAlgorithm : ${nonExistingAlgorithms}">
+        <td th:text="${nonExistingAlgorithms}"></td>
+    </tr>
+</table>
+</body>
+</html>
