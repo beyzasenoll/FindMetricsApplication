@@ -27,6 +27,6 @@ public class MetricsController {
         model.addAttribute("existingAlgorithms", existingAlgorithms);
         model.addAttribute("nonExistingAlgorithms", nonExistingAlgorithms);
 
-        return "metrics_reports";
+        return "index";
     }
 }
