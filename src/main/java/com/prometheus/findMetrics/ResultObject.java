@@ -4,16 +4,15 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public class ResultObject {
-    private List<String> existingAlgorithms;
-
-    private List<String> nonExistingAlgorithms;
     Map<String, String> algorithmsForDifferentPrefix;
-
     LocalDateTime dateTimeLocal;
     OffsetDateTime dateTimeUTC;
+    private List<String> existingAlgorithms;
+    private List<String> nonExistingAlgorithms;
 
 
     public ResultObject(List<String> existingAlgorithms, List<String> nonExistingAlgorithms, Map<String, String> algorithmsForDifferentPrefix) {
@@ -21,7 +20,7 @@ public class ResultObject {
         this.nonExistingAlgorithms = nonExistingAlgorithms;
         this.algorithmsForDifferentPrefix = algorithmsForDifferentPrefix;
         this.dateTimeUTC = OffsetDateTime.now(ZoneOffset.UTC);
-        this.dateTimeLocal=LocalDateTime.now();
+        this.dateTimeLocal = LocalDateTime.now();
     }
 
 
@@ -48,6 +47,7 @@ public class ResultObject {
     public void setAlgorithmsForDifferentPrefix(Map<String, String> algorithmsForDifferentPrefix) {
         this.algorithmsForDifferentPrefix = algorithmsForDifferentPrefix;
     }
+
     public String getDateTimeLocal() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return dateTimeLocal.format(formatter);

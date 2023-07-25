@@ -31,54 +31,9 @@ public class MetricsService {
     private String searchFromPrometheusApi;
 
 
-
     public MetricsService(WebClient.Builder webClientBuilder,
                           @Value("${prometheus.api.base-url}") String prometheusApiBaseUrl) {
         this.webClient = webClientBuilder.baseUrl(prometheusApiBaseUrl).build();
-    }
-
-    public ResultObject findMetricsAlgorithms() throws IOException {
-        //PrometheusMetricResponse prometheusMetricResponses = fetchDataFromApi();
-        PrometheusMetricResponse prometheusMetricResponses = readJsonDataFromFile();
-
-
-        List<String> existingAlgorithms = new ArrayList<>();
-        List<String> nonExistingAlgorithms = new ArrayList<>();
-        Map<String, String> algorithmsForDifferentPrefix = new HashMap<>();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        List<String> metricsFromPrometheus = prometheusMetricResponses.getData();
-        List<String> algorithmList = readAlgorithmsFromFile(algorithmsFilePath);
-
-
-
-        for (String algorithm : algorithmList) {
-            boolean found = false;
-            for (String metricResponse : metricsFromPrometheus) {
-                String prefixedMetric = algorithmsPrefix + algorithm;
-                if (prefixedMetric.equals(metricResponse)) {
-                    found = true;
-                    existingAlgorithms.add(algorithm);
-                    break;
-                }
-                else if (metricResponse.contains(algorithm)) {
-                    found = true;
-                    algorithmsForDifferentPrefix.put(algorithm, metricResponse);
-                }
-            }
-
-            if (!found) {
-                nonExistingAlgorithms.add(algorithm);
-            }
-        }
-        List<String> sortedExistingAlgorithms = existingAlgorithms.stream().sorted().collect(Collectors.toList());
-        List<String> sortedNonExistingAlgorithms = nonExistingAlgorithms.stream().sorted().collect(Collectors.toList());
-
-
-
-        ResultObject resultObject = new ResultObject(sortedExistingAlgorithms, sortedNonExistingAlgorithms, algorithmsForDifferentPrefix);
-        return resultObject;
     }
 
     public static List<String> readAlgorithmsFromFile(String filePath) {
@@ -96,7 +51,48 @@ public class MetricsService {
         return algorithms;
     }
 
-   //for only local test purposes
+    public ResultObject findMetricsAlgorithms() throws IOException {
+        //PrometheusMetricResponse prometheusMetricResponses = fetchDataFromApi();
+        PrometheusMetricResponse prometheusMetricResponses = readJsonDataFromFile();
+
+
+        List<String> existingAlgorithms = new ArrayList<>();
+        List<String> nonExistingAlgorithms = new ArrayList<>();
+        Map<String, String> algorithmsForDifferentPrefix = new HashMap<>();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        List<String> metricsFromPrometheus = prometheusMetricResponses.getData();
+        List<String> algorithmList = readAlgorithmsFromFile(algorithmsFilePath);
+
+
+        for (String algorithm : algorithmList) {
+            boolean found = false;
+            for (String metricResponse : metricsFromPrometheus) {
+                String prefixedMetric = algorithmsPrefix + algorithm;
+                if (prefixedMetric.equals(metricResponse)) {
+                    found = true;
+                    existingAlgorithms.add(algorithm);
+                    break;
+                } else if (metricResponse.contains(algorithm)) {
+                    found = true;
+                    algorithmsForDifferentPrefix.put(algorithm, metricResponse);
+                }
+            }
+
+            if (!found) {
+                nonExistingAlgorithms.add(algorithm);
+            }
+        }
+        List<String> sortedExistingAlgorithms = existingAlgorithms.stream().sorted().collect(Collectors.toList());
+        List<String> sortedNonExistingAlgorithms = nonExistingAlgorithms.stream().sorted().collect(Collectors.toList());
+
+
+        ResultObject resultObject = new ResultObject(sortedExistingAlgorithms, sortedNonExistingAlgorithms, algorithmsForDifferentPrefix);
+        return resultObject;
+    }
+
+    //for only local test purposes
     private PrometheusMetricResponse readJsonDataFromFile() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(new File(metricResponseFilePath), PrometheusMetricResponse.class);
