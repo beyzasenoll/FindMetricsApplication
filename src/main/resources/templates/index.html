@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<title>Metrics Report</title>
 	<meta charset="utf-8">
@@ -13,14 +14,14 @@
 </head>
 <body>
 <section class="ftco-section">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center mb-5">
 				<h1 class="heading-section">Metrics Report</h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="table-wrap">
 					<table class="table table-bordered table-dark table-hover">
 						<thead>
@@ -32,13 +33,13 @@
 						<tbody>
 						<tr th:each="existingAlgorithm, iterStat : ${existingAlgorithms}">
 							<td th:text="${iterStat.count}"></td>
-							<td th:text="${existingAlgorithm}"></td>
+							<td style="padding-right:1000px" th:text="${existingAlgorithm}" title="Tooltip for column 2"></td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<div class="table-wrap">
 					<table class="table table-bordered table-dark table-hover">
 						<thead>
@@ -50,7 +51,25 @@
 						<tbody>
 						<tr th:each="nonExistingAlgorithm, iterStat : ${nonExistingAlgorithms}">
 							<td th:text="${iterStat.count}"></td>
-							<td th:text="${nonExistingAlgorithm}"></td>
+							<td style="padding-right:1000px" th:text="${nonExistingAlgorithm}"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="table-wrap">
+					<table class="table table-bordered table-dark table-hover">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>Existing Metrics with Different Prefix</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="algorithmsForDifferentPrefix, iterStat : ${algorithmsForDifferentPrefix}">
+							<td th:text="${iterStat.count}"></td>
+							<td style="padding-right:1000px" th:text="${algorithmsForDifferentPrefix}"></td>
 						</tr>
 						</tbody>
 					</table>

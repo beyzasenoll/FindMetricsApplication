@@ -1,5 +1,6 @@
 package com.prometheus.findMetrics;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
 @Controller
 public class MetricsController {
     private final MetricsService metricsService;
@@ -16,6 +19,8 @@ public class MetricsController {
         this.metricsService = metricsService;
     }
 
+    @Value("${prefix}")
+    private String algorithmsPrefix;
 
     @GetMapping("/findMetrics")
     public String searchMetric(Model model) throws IOException {
@@ -24,8 +29,12 @@ public class MetricsController {
         ResultObject resultObject = metricsService.findMetricsAlgorithms();
         List<String> existingAlgorithms=resultObject.getExistingAlgorithms();
         List<String> nonExistingAlgorithms=resultObject.getNonExistingAlgorithms();
+        List<String> algorithmsForDifferentPrefix=resultObject.getAlgorithmNames();
+
+        model.addAttribute("prefix",algorithmsPrefix);
         model.addAttribute("existingAlgorithms", existingAlgorithms);
         model.addAttribute("nonExistingAlgorithms", nonExistingAlgorithms);
+        model.addAttribute("algorithmsForDifferentPrefix", algorithmsForDifferentPrefix);
 
         return "index";
     }

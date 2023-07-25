@@ -10,9 +10,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MetricsService {
@@ -43,11 +43,13 @@ public class MetricsService {
 
         List<String> existingAlgorithms = new ArrayList<>();
         List<String> nonExistingAlgorithms = new ArrayList<>();
+        Map<String, List<String>> algorithmsForDifferentPrefix = new HashMap<>();
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         List<String> metricsFromPrometheus = prometheusMetricResponses.getData();
         List<String> algorithmList = readAlgorithmsFromFile(algorithmsFilePath);
+
 
 
         for (String algorithm : algorithmList) {
@@ -59,13 +61,25 @@ public class MetricsService {
                     existingAlgorithms.add(algorithm);
                     break;
                 }
+               else if (metricResponse.contains(algorithm)){
+                    found = true;
+                    // Check if the algorithm is already in the map
+                    if (algorithmsForDifferentPrefix.containsKey(algorithm)) {
+                        algorithmsForDifferentPrefix.get(algorithm).add(metricResponse);
+                    } else {
+                        List<String> algorithmsWithprefix = new ArrayList<>();
+                        algorithmsWithprefix.add(metricResponse);
+                        algorithmsForDifferentPrefix.put(algorithm, algorithmsWithprefix);
+                    }
+                }
             }
+
             if (!found) {
                 nonExistingAlgorithms.add(algorithm);
             }
         }
 
-        ResultObject resultObject = new ResultObject(existingAlgorithms, nonExistingAlgorithms);
+        ResultObject resultObject = new ResultObject(existingAlgorithms, nonExistingAlgorithms, algorithmsForDifferentPrefix);
         return resultObject;
     }
 
