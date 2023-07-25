@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class MetricsController {
@@ -29,12 +28,12 @@ public class MetricsController {
         ResultObject resultObject = metricsService.findMetricsAlgorithms();
         List<String> existingAlgorithms=resultObject.getExistingAlgorithms();
         List<String> nonExistingAlgorithms=resultObject.getNonExistingAlgorithms();
-        List<String> algorithmsForDifferentPrefix=resultObject.getAlgorithmNames();
+        Map<String, String> algorithmsForDifferentPrefix=resultObject.getAlgorithmsForDifferentPrefix();
 
         model.addAttribute("prefix",algorithmsPrefix);
         model.addAttribute("existingAlgorithms", existingAlgorithms);
         model.addAttribute("nonExistingAlgorithms", nonExistingAlgorithms);
-        model.addAttribute("algorithmsForDifferentPrefix", algorithmsForDifferentPrefix);
+        model.addAttribute("algorithmsForDifferentPrefix",algorithmsForDifferentPrefix);
 
         return "index";
     }

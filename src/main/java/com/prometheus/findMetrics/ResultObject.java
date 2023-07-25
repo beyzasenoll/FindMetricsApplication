@@ -9,19 +9,15 @@ public class ResultObject {
     private List<String> existingAlgorithms;
 
     private List<String> nonExistingAlgorithms;
-    Map<String, List<String>> algorithmsForDifferentPrefix;
+    Map<String, String> algorithmsForDifferentPrefix;
 
-    public ResultObject(List<String> existingAlgorithms, List<String> nonExistingAlgorithms, Map<String, List<String>> algorithmsForDifferentPrefix) {
+
+    public ResultObject(List<String> existingAlgorithms, List<String> nonExistingAlgorithms, Map<String, String> algorithmsForDifferentPrefix) {
         this.existingAlgorithms = existingAlgorithms;
         this.nonExistingAlgorithms = nonExistingAlgorithms;
         this.algorithmsForDifferentPrefix = algorithmsForDifferentPrefix;
     }
-    public List<String> getAlgorithmNames() {
-        return new ArrayList<>(algorithmsForDifferentPrefix.keySet());
-    }
-    public List<List<String>> getAlgorithmsWithPrefixValues() {
-        return new ArrayList<>(algorithmsForDifferentPrefix.values());
-    }
+
 
     public List<String> getExistingAlgorithms() {
         return existingAlgorithms;
@@ -39,11 +35,13 @@ public class ResultObject {
         this.nonExistingAlgorithms = nonExistingAlgorithms;
     }
 
-    public Map<String, List<String>> getAlgorithmsForDifferentPrefix() {
+    public Map<String, String> getAlgorithmsForDifferentPrefix() {
         return algorithmsForDifferentPrefix;
     }
 
-    public void setAlgorithmsForDifferentPrefix(Map<String, List<String>> algorithmsForDifferentPrefix) {
+    public void setAlgorithmsForDifferentPrefix(Map<String, String> algorithmsForDifferentPrefix) {
         this.algorithmsForDifferentPrefix = algorithmsForDifferentPrefix;
     }
+
+
 }

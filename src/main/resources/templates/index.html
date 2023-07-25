@@ -33,7 +33,7 @@
 						<tbody>
 						<tr th:each="existingAlgorithm, iterStat : ${existingAlgorithms}">
 							<td th:text="${iterStat.count}"></td>
-							<td style="padding-right:1000px" th:text="${existingAlgorithm}" title="Tooltip for column 2"></td>
+							<td style="padding-right:1000px" th:text="${existingAlgorithm}" th:title="${prefix + existingAlgorithm}"></td>
 						</tr>
 						</tbody>
 					</table>
@@ -51,7 +51,7 @@
 						<tbody>
 						<tr th:each="nonExistingAlgorithm, iterStat : ${nonExistingAlgorithms}">
 							<td th:text="${iterStat.count}"></td>
-							<td style="padding-right:1000px" th:text="${nonExistingAlgorithm}"></td>
+							<td style="padding-right:1000px" th:text="${nonExistingAlgorithm}" th:title="${prefix + nonExistingAlgorithm}"></td>
 						</tr>
 						</tbody>
 					</table>
@@ -67,21 +67,17 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr th:each="algorithmsForDifferentPrefix, iterStat : ${algorithmsForDifferentPrefix}">
-							<td th:text="${iterStat.count}"></td>
-							<td style="padding-right:1000px" th:text="${algorithmsForDifferentPrefix}"></td>
+						<tr th:each="entry ,iterStat : ${algorithmsForDifferentPrefix.entrySet()}">
+							<td th:text="${iterStat.count}">
+							<td th:text="${entry.key}" th:title="${entry.value}" th:style="'padding-right: 1000px'"></td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </section>
-
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>

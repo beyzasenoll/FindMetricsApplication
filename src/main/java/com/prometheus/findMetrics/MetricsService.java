@@ -43,7 +43,7 @@ public class MetricsService {
 
         List<String> existingAlgorithms = new ArrayList<>();
         List<String> nonExistingAlgorithms = new ArrayList<>();
-        Map<String, List<String>> algorithmsForDifferentPrefix = new HashMap<>();
+        Map<String, String> algorithmsForDifferentPrefix = new HashMap<>();
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -61,16 +61,9 @@ public class MetricsService {
                     existingAlgorithms.add(algorithm);
                     break;
                 }
-               else if (metricResponse.contains(algorithm)){
+                else if (metricResponse.contains(algorithm)) {
                     found = true;
-                    // Check if the algorithm is already in the map
-                    if (algorithmsForDifferentPrefix.containsKey(algorithm)) {
-                        algorithmsForDifferentPrefix.get(algorithm).add(metricResponse);
-                    } else {
-                        List<String> algorithmsWithprefix = new ArrayList<>();
-                        algorithmsWithprefix.add(metricResponse);
-                        algorithmsForDifferentPrefix.put(algorithm, algorithmsWithprefix);
-                    }
+                    algorithmsForDifferentPrefix.put(algorithm, metricResponse);
                 }
             }
 
