@@ -1,9 +1,10 @@
 package com.prometheus.findMetrics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class ResultObject {
     private List<String> existingAlgorithms;
@@ -11,11 +12,16 @@ public class ResultObject {
     private List<String> nonExistingAlgorithms;
     Map<String, String> algorithmsForDifferentPrefix;
 
+    LocalDateTime dateTimeLocal;
+    OffsetDateTime dateTimeUTC;
+
 
     public ResultObject(List<String> existingAlgorithms, List<String> nonExistingAlgorithms, Map<String, String> algorithmsForDifferentPrefix) {
         this.existingAlgorithms = existingAlgorithms;
         this.nonExistingAlgorithms = nonExistingAlgorithms;
         this.algorithmsForDifferentPrefix = algorithmsForDifferentPrefix;
+        this.dateTimeUTC = OffsetDateTime.now(ZoneOffset.UTC);
+        this.dateTimeLocal=LocalDateTime.now();
     }
 
 
@@ -41,6 +47,23 @@ public class ResultObject {
 
     public void setAlgorithmsForDifferentPrefix(Map<String, String> algorithmsForDifferentPrefix) {
         this.algorithmsForDifferentPrefix = algorithmsForDifferentPrefix;
+    }
+    public String getDateTimeLocal() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return dateTimeLocal.format(formatter);
+    }
+
+    public void setDateTimeLocal(LocalDateTime dateTimeLocal) {
+        this.dateTimeLocal = dateTimeLocal;
+    }
+
+    public String getDateTimeUTC() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss Z");
+        return dateTimeUTC.format(formatter);
+    }
+
+    public void setDateTimeUTC(OffsetDateTime dateTimeUTC) {
+        this.dateTimeUTC = dateTimeUTC;
     }
 
 

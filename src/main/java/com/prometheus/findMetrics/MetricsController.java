@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.*;
 
 @Controller
@@ -29,11 +31,17 @@ public class MetricsController {
         List<String> existingAlgorithms=resultObject.getExistingAlgorithms();
         List<String> nonExistingAlgorithms=resultObject.getNonExistingAlgorithms();
         Map<String, String> algorithmsForDifferentPrefix=resultObject.getAlgorithmsForDifferentPrefix();
+        String dateTimeLocal= resultObject.getDateTimeLocal();
+        String dateTimeUTC= resultObject.getDateTimeUTC();
+
+
 
         model.addAttribute("prefix",algorithmsPrefix);
         model.addAttribute("existingAlgorithms", existingAlgorithms);
         model.addAttribute("nonExistingAlgorithms", nonExistingAlgorithms);
         model.addAttribute("algorithmsForDifferentPrefix",algorithmsForDifferentPrefix);
+        model.addAttribute("dateTimeLocal",dateTimeLocal);
+        model.addAttribute("dateTimeUTC",dateTimeUTC);
 
         return "index";
     }

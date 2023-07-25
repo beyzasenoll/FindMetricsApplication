@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class MetricsService {
@@ -37,7 +38,7 @@ public class MetricsService {
     }
 
     public ResultObject findMetricsAlgorithms() throws IOException {
-       // PrometheusMetricResponse prometheusMetricResponses = fetchDataFromApi();
+        //PrometheusMetricResponse prometheusMetricResponses = fetchDataFromApi();
         PrometheusMetricResponse prometheusMetricResponses = readJsonDataFromFile();
 
 
@@ -71,8 +72,12 @@ public class MetricsService {
                 nonExistingAlgorithms.add(algorithm);
             }
         }
+        List<String> sortedExistingAlgorithms = existingAlgorithms.stream().sorted().collect(Collectors.toList());
+        List<String> sortedNonExistingAlgorithms = nonExistingAlgorithms.stream().sorted().collect(Collectors.toList());
 
-        ResultObject resultObject = new ResultObject(existingAlgorithms, nonExistingAlgorithms, algorithmsForDifferentPrefix);
+
+
+        ResultObject resultObject = new ResultObject(sortedExistingAlgorithms, sortedNonExistingAlgorithms, algorithmsForDifferentPrefix);
         return resultObject;
     }
 
