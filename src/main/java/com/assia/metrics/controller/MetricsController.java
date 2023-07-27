@@ -1,7 +1,7 @@
 package com.assia.metrics.controller;
 
 import com.assia.metrics.dto.ResultObject;
-import com.assia.metrics.service.MetricsService;
+import com.assia.metrics.domain.service.MetricsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
-package com.assia.metrics.service;
+package com.assia.metrics.domain.service;
 
-import com.assia.metrics.domain.PrometheusMetricResponse;
+import com.assia.metrics.domain.model.PrometheusMetricResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.assia.metrics.dto.ResultObject;
 import org.springframework.beans.factory.annotation.Value;

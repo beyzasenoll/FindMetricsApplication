@@ -1,4 +1,4 @@
-package com.assia.metrics.domain;
+package com.assia.metrics.domain.model;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

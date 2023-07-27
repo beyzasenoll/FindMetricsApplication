@@ -1,4 +1,4 @@
-package com.assia.metrics.service;
+package com.assia.metrics.domain.service;
 
 import javax.tools.JavaCompiler;
 import javax.tools.ToolProvider;
