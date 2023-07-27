@@ -1,4 +1,4 @@
-package com.prometheus.findMetrics;
+package com.assia.metrics.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

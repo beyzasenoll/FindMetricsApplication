@@ -1,4 +1,4 @@
-package com.prometheus.findMetrics;
+package com.assia.metrics;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,5 +10,4 @@ public class FindMetricsApplication {
 
         SpringApplication.run(FindMetricsApplication.class, args);
     }
-
 }

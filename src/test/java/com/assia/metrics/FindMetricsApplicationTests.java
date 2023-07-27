@@ -1,4 +1,4 @@
-package com.prometheus.findMetrics;
+package com.assia.metrics;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
