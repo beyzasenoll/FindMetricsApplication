@@ -22,7 +22,6 @@ public class MetricsController {
     @GetMapping("/findMetrics")
     public String searchMetric(Model model) throws IOException {
 
-
         ResultObject resultObject = metricsService.findAlgorithmMetrics();
 
         model.addAttribute("prefix", algorithmsPrefix);

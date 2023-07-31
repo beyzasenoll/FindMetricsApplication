@@ -17,18 +17,21 @@ public class MetricsService {
     private final WebClient webClient;
 
     //for only local test purposes
-    @Value("${matrics.response.filepath}")
+    @Value("${metrics.response.filepath}")
     private String metricResponseFilePath;
     @Value("${prefix}")
     private String algorithmsPrefix;
-    @Value("${search.all.api.endpoint}")
+    @Value("${prometheus.api.search.all.endpoint}")
     private String searchFromPrometheusApi;
 
     @Value("${external.class.filepath}")
     private String externalClassFilePath;
 
     @Value("${external.class.filename}")
-    private String externalClassFileName;;
+    private String externalClassFileName;
+
+    @Value("${read.from.file}")
+    private boolean readFromFile;
 
 
     public MetricsService(WebClient.Builder webClientBuilder,
@@ -37,10 +40,14 @@ public class MetricsService {
     }
 
     public ResultObject findAlgorithmMetrics() throws IOException {
-        //PrometheusMetricResponse prometheusMetricResponses = fetchDataFromApi();
-        //ObjectMapper objectMapper = new ObjectMapper();
-        //only use test
-        PrometheusMetricResponse prometheusMetricResponses = readJsonDataFromFile();
+        PrometheusMetricResponse prometheusMetricResponses;
+
+        if(readFromFile){
+            prometheusMetricResponses = readJsonDataFromFile();
+        }
+        else {
+            prometheusMetricResponses = fetchDataFromApi();
+        }
 
         List<String> existingAlgorithms = new ArrayList<>();
         List<String> nonExistingAlgorithms = new ArrayList<>();
