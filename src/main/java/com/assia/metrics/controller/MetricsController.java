@@ -19,7 +19,7 @@ public class MetricsController {
         this.metricsService = metricsService;
     }
 
-    @GetMapping("/findMetrics")
+    @GetMapping({"/", "/findMetrics"})
     public String searchMetric(Model model) throws IOException {
 
         ResultObject resultObject = metricsService.findAlgorithmMetrics();
