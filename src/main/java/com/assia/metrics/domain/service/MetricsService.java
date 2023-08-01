@@ -168,7 +168,7 @@ public class MetricsService {
     public void deleteAlgorithmClassFile() {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         String classFilePath = externalClassFilePath + externalClassFileName + ".class";
-        File classFile = new File(clasilePath);
+        File classFile = new File(classFilePath);
 
         if (classFile.exists()) {
             if (classFile.delete()) {
