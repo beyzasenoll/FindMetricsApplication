@@ -1,8 +1,10 @@
 package com.assia.metrics.domain.service;
 
 import com.assia.metrics.domain.model.PrometheusMetricResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.assia.metrics.dto.ResultObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -32,6 +34,8 @@ public class MetricsService {
 
     @Value("${read.from.file}")
     private boolean readFromFile;
+    @Value("${logging.file.name}")
+    private String loggingFileName;
 
 
     public MetricsService(WebClient.Builder webClientBuilder,
@@ -40,12 +44,16 @@ public class MetricsService {
     }
 
     public ResultObject findAlgorithmMetrics() throws IOException {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        resetLogFile();
+
         PrometheusMetricResponse prometheusMetricResponses;
 
-        if(readFromFile){
+        if (readFromFile) {
+            logger.debug("Reading metrics data from file: {}", metricResponseFilePath);
             prometheusMetricResponses = readJsonDataFromFile();
-        }
-        else {
+        } else {
+            logger.debug("Fetching metrics data from Prometheus API: {}", searchFromPrometheusApi);
             prometheusMetricResponses = fetchDataFromApi();
         }
 
@@ -78,6 +86,10 @@ public class MetricsService {
         Collections.sort(nonExistingAlgorithms);
 
         ResultObject resultObject = new ResultObject(existingAlgorithms, nonExistingAlgorithms, algorithmsForDifferentPrefix);
+
+        logger.info("Algorithm metrics search completed.");
+        deleteAlgorithmClassFile();
+
         return resultObject;
     }
 
@@ -95,13 +107,17 @@ public class MetricsService {
                 .block();
         return baseObject;
     }
+
     public List<String> readAlgorithmsFromExternalClass() {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        logger.info("Reading algorithms from external class.");
+
         List<String> algorithmList = new ArrayList<>();
-        String fullFileName = externalClassFilePath+externalClassFileName+".java";
+        String fullFileName = externalClassFilePath + externalClassFileName + ".java";
         deletePackage(fullFileName);
         boolean compilationSuccess = ExternalClassLoader.compileJavaFile(fullFileName);
         if (compilationSuccess) {
-            Class<?> externalClass =  ExternalClassLoader.loadExternalClass(externalClassFilePath, externalClassFileName);
+            Class<?> externalClass = ExternalClassLoader.loadExternalClass(externalClassFilePath, externalClassFileName);
 
             for (Field declaredField : externalClass.getDeclaredFields()) {
                 int modifiers = declaredField.getModifiers();
@@ -109,15 +125,17 @@ public class MetricsService {
                     algorithmList.add(declaredField.getName());
                 }
             }
+            logger.info("Successfully read algorithms from the external class.");
         } else {
-            System.err.println("Compilation failed. The external class could not be loaded.");
+            logger.error("Compilation failed. The external class could not be loaded.");
         }
-
         return algorithmList;
     }
-    public void deletePackage(String inputFilePath){
 
+    public void deletePackage(String inputFilePath) {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         try {
+            logger.debug("Deleting package statements from the file: {}", inputFilePath);
             File inputFile = new File(inputFilePath);
             String tempFile = inputFilePath + ".temp";
             File outputFile = new File(tempFile);
@@ -126,31 +144,50 @@ public class MetricsService {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                // Check if the line starts with "package" (ignore leading/trailing whitespace)
                 if (line.trim().startsWith("package")) {
-                    // Skip the line, do not write it to the output file
                     continue;
                 }
-                // Write the line to the output file
                 writer.write(line);
                 writer.newLine();
             }
-
-            // Close the reader and writer
             reader.close();
             writer.close();
 
-            // Replace the original file with the updated file (optional)
             if (inputFile.delete()) {
                 outputFile.renameTo(inputFile);
             } else {
-                System.out.println("Failed to delete the original file or rename the output file.");
+                logger.error("Failed to delete the original file or rename the output file.");
             }
-
-            System.out.println("Package lines have been deleted from the file.");
+            logger.info("Package lines have been deleted from the file.");
         } catch (IOException e) {
+            logger.error("Error while deleting package statements from the file: {}", inputFilePath);
             e.printStackTrace();
         }
     }
 
+    public void deleteAlgorithmClassFile() {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        String classFilePath = externalClassFilePath + externalClassFileName + ".class";
+        File classFile = new File(classFilePath);
+
+        if (classFile.exists()) {
+            if (classFile.delete()) {
+                logger.info("AlgorithmNames.class file has been deleted.");
+            } else {
+                logger.error("Failed to delete AlgorithmNames.class file.");
+            }
+        } else {
+            logger.warn("AlgorithmNames.class file does not exist.");
+        }
+    }
+
+    private void resetLogFile() {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        String logFileName = loggingFileName;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFileName, false))) {
+        } catch (IOException e) {
+            logger.error("Error while resetting log file: {}", e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }

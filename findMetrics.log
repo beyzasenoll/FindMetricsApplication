@@ -1,0 +1,6 @@
+2023-08-01 11:27:30.451  INFO 79138 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Reading algorithms from external class.
+2023-08-01 11:27:30.454  INFO 79138 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Package lines have been deleted from the file.
+2023-08-01 11:27:30.727  INFO 79138 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Successfully read algorithms from the external class.
+2023-08-01 11:27:30.732  INFO 79138 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Algorithm metrics search completed.
+2023-08-01 11:27:30.732  INFO 79138 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : AlgorithmNames.class file has been deleted.
+2023-08-01 11:27:30.733  INFO 79138 --- [http-nio-8089-exec-1] c.a.m.controller.MetricsController       : Adding metrics data to the model.

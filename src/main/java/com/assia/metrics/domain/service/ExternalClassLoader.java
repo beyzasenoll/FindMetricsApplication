@@ -23,7 +23,6 @@ public class ExternalClassLoader {
             URLClassLoader classLoader = new URLClassLoader(new URL[]{url});
 
 
-
             Class<?> externalClass = classLoader.loadClass(className);
             return externalClass;
         } catch (Exception e) {
