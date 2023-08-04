@@ -47,7 +47,8 @@
                     <tbody>
                     <tr th:each="existingAlgorithm, iterStat : ${existingAlgorithms}">
                         <td th:text="${iterStat.count}"></td>
-                        <td style="padding-right:1000px" th:text="${existingAlgorithm}"
+                        <td style="padding-right:1000px"
+                            th:text="${existingAlgorithm + ' (Date: ' + existingAlgorithmsTimeStamps[iterStat.index] + ')'}">
                             th:title="${prefix + existingAlgorithm}"></td>
                     </tr>
                     </tbody>
@@ -79,13 +80,16 @@
                     <thead>
                     <tr>
                         <th>#</th>
+
                         <th>Existing Metrics with Different Prefix</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="entry ,iterStat : ${algorithmsForDifferentPrefix.entrySet()}">
                         <td th:text="${iterStat.count}">
-                        <td th:style="'padding-right: 1000px'" th:text="${entry.key}" th:title="${entry.value}"></td>
+                        <td th:style="'padding-right: 1000px'" th:text="${entry.key +' (Date: ' + algorithmsForDifferentPrefixTimeStamps[iterStat.index] + ')'}"
+                            th:title="${entry.value}">
+                    </td>
                     </tr>
                     </tbody>
                 </table>

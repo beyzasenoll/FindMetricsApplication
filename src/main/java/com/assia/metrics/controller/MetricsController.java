@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class MetricsController {
@@ -28,12 +31,15 @@ public class MetricsController {
 
         ResultObject resultObject = metricsService.findAlgorithmMetrics();
 
+
         model.addAttribute("prefix", algorithmsPrefix);
         model.addAttribute("existingAlgorithms", resultObject.getExistingAlgorithms());
         model.addAttribute("nonExistingAlgorithms", resultObject.getNonExistingAlgorithms());
         model.addAttribute("algorithmsForDifferentPrefix", resultObject.getAlgorithmsForDifferentPrefix());
         model.addAttribute("dateTimeLocal", resultObject.getDateTimeLocalFormatted());
         model.addAttribute("dateTimeUTC", resultObject.getDateTimeUTCFormatted());
+        model.addAttribute("algorithmsForDifferentPrefixTimeStamps",resultObject.getAlgorithmsForDifferentPrefixTimestamps());
+        model.addAttribute("existingAlgorithmsTimeStamps",resultObject.getExistingAlgorithmsTimeStamps());
 
         logger.info("Adding metrics data to the model.");
         return "index";

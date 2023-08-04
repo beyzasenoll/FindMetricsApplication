@@ -1,6 +1,8 @@
 package com.assia.metrics.domain.service;
 
+import com.assia.metrics.domain.model.BaseObject;
 import com.assia.metrics.domain.model.PrometheusMetricResponse;
+import com.assia.metrics.domain.model.Result;
 import com.assia.metrics.dto.ResultObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -8,9 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.time.Duration;
+import java.time.Instant;
 
 import java.io.*;
 import java.lang.reflect.Field;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -37,6 +45,13 @@ public class MetricsService {
     @Value("${logging.file.name}")
     private String loggingFileName;
 
+    @Value("${date.duration}")
+    private int dateDuration;
+
+    @Value("${step}")
+    String step ;
+
+
 
     public MetricsService(WebClient.Builder webClientBuilder,
                           @Value("${prometheus.api.base-url}") String prometheusApiBaseUrl) {
@@ -46,6 +61,9 @@ public class MetricsService {
     public ResultObject findAlgorithmMetrics() throws IOException {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         resetLogFile();
+        List<String> existingAlgorithmsTimeStamps = new ArrayList<>();
+        List<String> algorithmsForDifferentPrefixTimestamps = new ArrayList<>();
+
 
         PrometheusMetricResponse prometheusMetricResponses;
 
@@ -71,10 +89,12 @@ public class MetricsService {
                 if (prefixedMetric.equals(metricResponse)) {
                     found = true;
                     existingAlgorithms.add(algorithm);
+                    existingAlgorithmsTimeStamps.add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count"));
                     break;
                 } else if (metricResponse.contains(algorithm)) {
                     found = true;
                     algorithmsForDifferentPrefix.put(algorithm, metricResponse);
+                    algorithmsForDifferentPrefixTimestamps.add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count"));
                 }
             }
 
@@ -82,10 +102,10 @@ public class MetricsService {
                 nonExistingAlgorithms.add(algorithm);
             }
         }
-        Collections.sort(existingAlgorithms);
-        Collections.sort(nonExistingAlgorithms);
+       //  Collections.sort(existingAlgorithms);
+       // Collections.sort(nonExistingAlgorithms);
 
-        ResultObject resultObject = new ResultObject(existingAlgorithms, nonExistingAlgorithms, algorithmsForDifferentPrefix);
+        ResultObject resultObject = new ResultObject(existingAlgorithms, nonExistingAlgorithms, algorithmsForDifferentPrefix,existingAlgorithmsTimeStamps,algorithmsForDifferentPrefixTimestamps);
 
         logger.info("Algorithm metrics search completed.");
         deleteAlgorithmClassFile();
@@ -99,14 +119,6 @@ public class MetricsService {
         return objectMapper.readValue(new File(metricResponseFilePath), PrometheusMetricResponse.class);
     }
 
-    private PrometheusMetricResponse fetchDataFromApi() {
-        PrometheusMetricResponse baseObject = webClient.get()
-                .uri(searchFromPrometheusApi)
-                .retrieve()
-                .bodyToMono(PrometheusMetricResponse.class)
-                .block();
-        return baseObject;
-    }
 
     public List<String> readAlgorithmsFromExternalClass() {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
@@ -189,5 +201,63 @@ public class MetricsService {
             logger.error("Error while resetting log file: {}", e.getMessage());
             e.printStackTrace();
         }
+    }
+    public Instant findLastFoundTimestamp(String metric) {
+        Instant endTimestamp = Instant.now();
+        Instant startTimestamp = endTimestamp.minus(Duration.ofDays(dateDuration));
+
+        BaseObject baseObject = createUrlAndFetchData(metric, startTimestamp, endTimestamp, step);
+
+        if (baseObject == null || baseObject.getData().getResult() == null) {
+            return null;
+        }
+        List<Result> results = baseObject.getData().getResult();
+        Double maxLastValue = null;
+
+        for (Result result : results) {
+            List<List<Double>> values = result.getValues();
+            if (values != null && !values.isEmpty()) {
+                Double lastValue = values.get(values.size() - 1).get(0);
+                if (maxLastValue == null || lastValue > maxLastValue) {
+                    maxLastValue = lastValue;
+                }
+            }
+        }
+        if (maxLastValue != null) {
+            long epochSeconds = maxLastValue.longValue();
+            return Instant.ofEpochSecond(epochSeconds);
+        }
+
+        return null;
+    }
+
+    private BaseObject createUrlAndFetchData(String query, Instant startTimestamp, Instant endTimestamp, String step) {
+        String apiUrl = "http://localhost:9090";
+        String queryUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
+                .path("/api/v1/query_range")
+                .queryParam("query", query)
+                .queryParam("start", startTimestamp.toString())
+                .queryParam("end", endTimestamp.toString())
+                .queryParam("step", step)
+                .toUriString();
+        return fetchDataFromApiUrl(queryUrl, BaseObject.class);
+    }
+    private PrometheusMetricResponse fetchDataFromApi() {
+        return fetchDataFromApiUrl(searchFromPrometheusApi, PrometheusMetricResponse.class);
+    }
+    private <T> T fetchDataFromApiUrl(String url, Class<T> responseType) {
+        return webClient.get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(responseType)
+                .block();
+    }
+    public String findLastFoundTimestampAsString(String metric) {
+        Instant lastFoundInstant = findLastFoundTimestamp(metric);
+        if (lastFoundInstant != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            return lastFoundInstant.atZone(ZoneId.systemDefault()).format(formatter);
+        }
+        return null;
     }
 }
