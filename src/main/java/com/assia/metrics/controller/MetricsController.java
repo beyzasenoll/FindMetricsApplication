@@ -44,8 +44,8 @@ public class MetricsController {
         model.addAttribute("algorithmsForDifferentPrefix", differentPrefixAlgorithmResult.getAlgorithmsForDifferentPrefix());
         model.addAttribute("existingAlgorithmsTimeStamps", existingAlgorithmResult.getExistingAlgorithmsTimeStamps());
         model.addAttribute("algorithmsForDifferentPrefixTimeStamps", differentPrefixAlgorithmResult.getAlgorithmsForDifferentPrefixTimestamps());
-        model.addAttribute("existingAlgorithmsColors",existingAlgorithmResult.getExistingAlgorithmsColors());
-        model.addAttribute("algorithmsForDifferentPrefixColors",differentPrefixAlgorithmResult.getAlgorithmsForDifferentPrefixColors());
+        model.addAttribute("existingAlgorithmsColors", existingAlgorithmResult.getExistingAlgorithmsColors());
+        model.addAttribute("algorithmsForDifferentPrefixColors", differentPrefixAlgorithmResult.getAlgorithmsForDifferentPrefixColors());
 
         logger.info("Adding metrics data to the model.");
         return "index";

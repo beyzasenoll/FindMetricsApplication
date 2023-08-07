@@ -7,7 +7,7 @@ public class ExistingAlgorithmResult {
     private List<String> existingAlgorithmsTimeStamps;
     private List<String> existingAlgorithmsColors;
 
-    public ExistingAlgorithmResult(List<String> existingAlgorithms, List<String> existingAlgorithmsTimeStamps,List<String> existingAlgorithmsColors) {
+    public ExistingAlgorithmResult(List<String> existingAlgorithms, List<String> existingAlgorithmsTimeStamps, List<String> existingAlgorithmsColors) {
         this.existingAlgorithms = existingAlgorithms;
         this.existingAlgorithmsTimeStamps = existingAlgorithmsTimeStamps;
         this.existingAlgorithmsColors = existingAlgorithmsColors;

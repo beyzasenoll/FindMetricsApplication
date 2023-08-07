@@ -7,10 +7,11 @@ public class DifferentPrefixAlgorithmResult {
     private Map<String, String> algorithmsForDifferentPrefix;
     private List<String> algorithmsForDifferentPrefixTimestamps;
     private List<String> algorithmsForDifferentPrefixColors;
-    public DifferentPrefixAlgorithmResult(Map<String, String> algorithmsForDifferentPrefix, List<String> algorithmsForDifferentPrefixTimestamps,List<String> algorithmsForDifferentPrefixColors) {
+
+    public DifferentPrefixAlgorithmResult(Map<String, String> algorithmsForDifferentPrefix, List<String> algorithmsForDifferentPrefixTimestamps, List<String> algorithmsForDifferentPrefixColors) {
         this.algorithmsForDifferentPrefix = algorithmsForDifferentPrefix;
         this.algorithmsForDifferentPrefixTimestamps = algorithmsForDifferentPrefixTimestamps;
-        this.algorithmsForDifferentPrefixColors=algorithmsForDifferentPrefixColors;
+        this.algorithmsForDifferentPrefixColors = algorithmsForDifferentPrefixColors;
     }
 
     public Map<String, String> getAlgorithmsForDifferentPrefix() {

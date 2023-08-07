@@ -49,7 +49,7 @@
                         <td th:text="${iterStat.count}"></td>
                         <td th:style="'padding-right: 1000px;'">
                             <span th:text="${existingAlgorithm}" th:title="${prefix + existingAlgorithm}"></span>
-                            <br />
+                            <br/>
                             <span th:text="'(Timestamp: ' + ${existingAlgorithmsTimeStamps[iterStat.index]} + ')'"
                                   th:style="'color: ' + ${existingAlgorithmsColors[iterStat.index]}"></span>
                         </td>
@@ -91,10 +91,10 @@
                     <tr th:each="entry ,iterStat : ${algorithmsForDifferentPrefix.entrySet()}">
                         <td th:text="${iterStat.count}">
                         <td th:style="'padding-right: 1000px;'">
-                        <span th:text="${entry.key}" th:title="${entry.value}"></span>
-                        <br />
-                        <span th:text="'(Timestamp: ' + ${algorithmsForDifferentPrefixTimeStamps[iterStat.index]} + ')'"
-                              th:style="'color: ' + ${algorithmsForDifferentPrefixColors[iterStat.index]}"></span>
+                            <span th:text="${entry.key}" th:title="${entry.value}"></span>
+                            <br/>
+                            <span th:text="'(Timestamp: ' + ${algorithmsForDifferentPrefixTimeStamps[iterStat.index]} + ')'"
+                                  th:style="'color: ' + ${algorithmsForDifferentPrefixColors[iterStat.index]}"></span>
                     </tr>
                     </tr>
                     </tbody>
