@@ -1,6 +1,9 @@
-2023-08-04 16:23:13.009  INFO 27573 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Reading algorithms from external class.
-2023-08-04 16:23:13.011  INFO 27573 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Package lines have been deleted from the file.
-2023-08-04 16:23:13.167  INFO 27573 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Successfully read algorithms from the external class.
-2023-08-04 16:23:14.247  INFO 27573 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Algorithm metrics search completed.
-2023-08-04 16:23:14.249  INFO 27573 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : AlgorithmNames.class file has been deleted.
-2023-08-04 16:23:14.249  INFO 27573 --- [http-nio-8089-exec-1] c.a.m.controller.MetricsController       : Adding metrics data to the model.
+2023-08-07 13:44:56.222  INFO 84400 --- [http-nio-8089-exec-2] c.a.m.domain.service.MetricsService      : Reading algorithms from external class.
+2023-08-07 13:44:56.223  INFO 84400 --- [http-nio-8089-exec-2] c.a.m.domain.service.MetricsService      : Package lines have been deleted from the file.
+2023-08-07 13:44:56.289  INFO 84400 --- [http-nio-8089-exec-2] c.a.m.domain.service.MetricsService      : Successfully read algorithms from the external class.
+2023-08-07 13:44:57.211  INFO 84400 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Algorithm metrics search completed.
+2023-08-07 13:44:57.212  INFO 84400 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : AlgorithmNames.class file has been deleted.
+2023-08-07 13:44:57.213  INFO 84400 --- [http-nio-8089-exec-1] c.a.m.controller.MetricsController       : Adding metrics data to the model.
+2023-08-07 13:44:57.314  INFO 84400 --- [http-nio-8089-exec-2] c.a.m.domain.service.MetricsService      : Algorithm metrics search completed.
+2023-08-07 13:44:57.314  WARN 84400 --- [http-nio-8089-exec-2] c.a.m.domain.service.MetricsService      : AlgorithmNames.class file does not exist.
+2023-08-07 13:44:57.314  INFO 84400 --- [http-nio-8089-exec-2] c.a.m.controller.MetricsController       : Adding metrics data to the model.

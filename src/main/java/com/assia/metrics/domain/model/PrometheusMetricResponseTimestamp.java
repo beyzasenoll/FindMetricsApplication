@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "status",
         "data"
 })
-public class BaseObject {
+public class PrometheusMetricResponseTimestamp {
 
     @JsonProperty("status")
     private String status;

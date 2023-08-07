@@ -1,8 +1,11 @@
 package com.assia.metrics.domain.service;
 
-import com.assia.metrics.domain.model.BaseObject;
+import com.assia.metrics.domain.model.PrometheusMetricResponseTimestamp;
 import com.assia.metrics.domain.model.PrometheusMetricResponse;
 import com.assia.metrics.domain.model.Result;
+import com.assia.metrics.dto.DifferentPrefixAlgorithmResult;
+import com.assia.metrics.dto.ExistingAlgorithmResult;
+import com.assia.metrics.dto.NonExistingAlgorithmResult;
 import com.assia.metrics.dto.ResultObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -19,6 +22,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Service
@@ -61,9 +65,6 @@ public class MetricsService {
     public ResultObject findAlgorithmMetrics() throws IOException {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         resetLogFile();
-        List<String> existingAlgorithmsTimeStamps = new ArrayList<>();
-        List<String> algorithmsForDifferentPrefixTimestamps = new ArrayList<>();
-
 
         PrometheusMetricResponse prometheusMetricResponses;
 
@@ -75,43 +76,47 @@ public class MetricsService {
             prometheusMetricResponses = fetchDataFromApi();
         }
 
-        List<String> existingAlgorithms = new ArrayList<>();
-        List<String> nonExistingAlgorithms = new ArrayList<>();
-        Map<String, String> algorithmsForDifferentPrefix = new HashMap<>();
-
         List<String> metricsFromPrometheus = prometheusMetricResponses.getData();
         List<String> algorithmList = readAlgorithmsFromExternalClass();
 
+        DifferentPrefixAlgorithmResult differentPrefixResult = new DifferentPrefixAlgorithmResult(new HashMap<>(), new ArrayList<>(),new ArrayList<>());
+        ExistingAlgorithmResult existingAlgorithmResult = new ExistingAlgorithmResult(new ArrayList<>(), new ArrayList<>(),new ArrayList<>());
+        NonExistingAlgorithmResult nonExistingAlgorithmResult = new NonExistingAlgorithmResult(new ArrayList<>());
+
         for (String algorithm : algorithmList) {
             boolean found = false;
+            String color = "white";
             for (String metricResponse : metricsFromPrometheus) {
                 String prefixedMetric = algorithmsPrefix + algorithm;
                 if (prefixedMetric.equals(metricResponse)) {
                     found = true;
-                    existingAlgorithms.add(algorithm);
-                    existingAlgorithmsTimeStamps.add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count"));
+                    existingAlgorithmResult.getExistingAlgorithms().add(algorithm);
+                    existingAlgorithmResult.getExistingAlgorithmsTimeStamps().add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count")); //prefixedMetric
+                    color=getColorForTimestamp(findLastFoundTimestamp("prometheus_http_response_size_bytes_count"));
+                    existingAlgorithmResult.getExistingAlgorithmsColors().add(color);
                     break;
                 } else if (metricResponse.contains(algorithm)) {
                     found = true;
-                    algorithmsForDifferentPrefix.put(algorithm, metricResponse);
-                    algorithmsForDifferentPrefixTimestamps.add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count"));
+                    differentPrefixResult.getAlgorithmsForDifferentPrefix().put(algorithm, metricResponse);
+                    differentPrefixResult.getAlgorithmsForDifferentPrefixTimestamps().add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count"));//metricResponse
+                    color=getColorForTimestamp(findLastFoundTimestamp("prometheus_http_response_size_bytes_count"));
+                    differentPrefixResult.getAlgorithmsForDifferentPrefixColors().add(color);
                 }
             }
 
             if (!found) {
-                nonExistingAlgorithms.add(algorithm);
+                nonExistingAlgorithmResult.getNonExistingAlgorithms().add(algorithm);
             }
         }
-       //  Collections.sort(existingAlgorithms);
-       // Collections.sort(nonExistingAlgorithms);
 
-        ResultObject resultObject = new ResultObject(existingAlgorithms, nonExistingAlgorithms, algorithmsForDifferentPrefix,existingAlgorithmsTimeStamps,algorithmsForDifferentPrefixTimestamps);
+        ResultObject resultObject = new ResultObject(existingAlgorithmResult, nonExistingAlgorithmResult, differentPrefixResult);
 
         logger.info("Algorithm metrics search completed.");
         deleteAlgorithmClassFile();
 
         return resultObject;
     }
+
 
     //for only local test purposes
     private PrometheusMetricResponse readJsonDataFromFile() throws IOException {
@@ -206,12 +211,12 @@ public class MetricsService {
         Instant endTimestamp = Instant.now();
         Instant startTimestamp = endTimestamp.minus(Duration.ofDays(dateDuration));
 
-        BaseObject baseObject = createUrlAndFetchData(metric, startTimestamp, endTimestamp, step);
+        PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestamp, endTimestamp, step);
 
-        if (baseObject == null || baseObject.getData().getResult() == null) {
+        if (prometheusMetricResponseTimestamp == null || prometheusMetricResponseTimestamp.getData().getResult() == null) {
             return null;
         }
-        List<Result> results = baseObject.getData().getResult();
+        List<Result> results = prometheusMetricResponseTimestamp.getData().getResult();
         Double maxLastValue = null;
 
         for (Result result : results) {
@@ -230,8 +235,16 @@ public class MetricsService {
 
         return null;
     }
+    public String findLastFoundTimestampAsString(String metric) {
+        Instant lastFoundInstant = findLastFoundTimestamp(metric);
+        if (lastFoundInstant != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            return lastFoundInstant.atZone(ZoneId.systemDefault()).format(formatter);
+        }
+        return null;
+    }
 
-    private BaseObject createUrlAndFetchData(String query, Instant startTimestamp, Instant endTimestamp, String step) {
+    private PrometheusMetricResponseTimestamp createUrlAndFetchData(String query, Instant startTimestamp, Instant endTimestamp, String step) {
         String apiUrl = "http://localhost:9090";
         String queryUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .path("/api/v1/query_range")
@@ -240,7 +253,7 @@ public class MetricsService {
                 .queryParam("end", endTimestamp.toString())
                 .queryParam("step", step)
                 .toUriString();
-        return fetchDataFromApiUrl(queryUrl, BaseObject.class);
+        return fetchDataFromApiUrl(queryUrl, PrometheusMetricResponseTimestamp.class);
     }
     private PrometheusMetricResponse fetchDataFromApi() {
         return fetchDataFromApiUrl(searchFromPrometheusApi, PrometheusMetricResponse.class);
@@ -252,12 +265,23 @@ public class MetricsService {
                 .bodyToMono(responseType)
                 .block();
     }
-    public String findLastFoundTimestampAsString(String metric) {
-        Instant lastFoundInstant = findLastFoundTimestamp(metric);
-        if (lastFoundInstant != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            return lastFoundInstant.atZone(ZoneId.systemDefault()).format(formatter);
+
+    private String getColorForTimestamp(Instant timestamp) {
+        if (timestamp != null) {
+            Instant now = Instant.now();
+            Instant oneDayAgo = now.minus(Duration.ofDays(1));
+            Instant sixHoursAgo = now.minus(Duration.ofHours(6));
+
+            if (timestamp.isBefore(oneDayAgo)) {
+                return "red";
+            } else if (timestamp.isBefore(sixHoursAgo) ) {
+                return "yellow";
+            } else if (timestamp.truncatedTo(ChronoUnit.MINUTES).equals(now.truncatedTo(ChronoUnit.MINUTES))) {
+                return "green";
+            }
         }
-        return null;
+
+        return "white";
     }
+
 }

@@ -1,6 +1,9 @@
 package com.assia.metrics.controller;
 
 import com.assia.metrics.domain.service.MetricsService;
+import com.assia.metrics.dto.DifferentPrefixAlgorithmResult;
+import com.assia.metrics.dto.ExistingAlgorithmResult;
+import com.assia.metrics.dto.NonExistingAlgorithmResult;
 import com.assia.metrics.dto.ResultObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
 public class MetricsController {
@@ -31,15 +32,20 @@ public class MetricsController {
 
         ResultObject resultObject = metricsService.findAlgorithmMetrics();
 
+        ExistingAlgorithmResult existingAlgorithmResult = resultObject.getExistingAlgorithmResult();
+        NonExistingAlgorithmResult nonExistingAlgorithmResult = resultObject.getNonExistingAlgorithmResult();
+        DifferentPrefixAlgorithmResult differentPrefixAlgorithmResult = resultObject.getDifferentPrefixResult();
 
         model.addAttribute("prefix", algorithmsPrefix);
-        model.addAttribute("existingAlgorithms", resultObject.getExistingAlgorithms());
-        model.addAttribute("nonExistingAlgorithms", resultObject.getNonExistingAlgorithms());
-        model.addAttribute("algorithmsForDifferentPrefix", resultObject.getAlgorithmsForDifferentPrefix());
         model.addAttribute("dateTimeLocal", resultObject.getDateTimeLocalFormatted());
         model.addAttribute("dateTimeUTC", resultObject.getDateTimeUTCFormatted());
-        model.addAttribute("algorithmsForDifferentPrefixTimeStamps",resultObject.getAlgorithmsForDifferentPrefixTimestamps());
-        model.addAttribute("existingAlgorithmsTimeStamps",resultObject.getExistingAlgorithmsTimeStamps());
+        model.addAttribute("existingAlgorithms", existingAlgorithmResult.getExistingAlgorithms());
+        model.addAttribute("nonExistingAlgorithms", nonExistingAlgorithmResult.getNonExistingAlgorithms());
+        model.addAttribute("algorithmsForDifferentPrefix", differentPrefixAlgorithmResult.getAlgorithmsForDifferentPrefix());
+        model.addAttribute("existingAlgorithmsTimeStamps", existingAlgorithmResult.getExistingAlgorithmsTimeStamps());
+        model.addAttribute("algorithmsForDifferentPrefixTimeStamps", differentPrefixAlgorithmResult.getAlgorithmsForDifferentPrefixTimestamps());
+        model.addAttribute("existingAlgorithmsColors",existingAlgorithmResult.getExistingAlgorithmsColors());
+        model.addAttribute("algorithmsForDifferentPrefixColors",differentPrefixAlgorithmResult.getAlgorithmsForDifferentPrefixColors());
 
         logger.info("Adding metrics data to the model.");
         return "index";
