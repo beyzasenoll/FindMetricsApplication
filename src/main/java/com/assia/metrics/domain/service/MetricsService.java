@@ -3,11 +3,7 @@ package com.assia.metrics.domain.service;
 import com.assia.metrics.domain.model.PrometheusMetricResponse;
 import com.assia.metrics.domain.model.PrometheusMetricResponseTimestamp;
 import com.assia.metrics.domain.model.Result;
-import com.assia.metrics.dto.DifferentPrefixAlgorithmResult;
-import com.assia.metrics.dto.ExistingAlgorithmResult;
-import com.assia.metrics.dto.NonExistingAlgorithmResult;
 import com.assia.metrics.dto.ResultObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,12 +15,13 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MetricsService {
@@ -45,7 +42,7 @@ public class MetricsService {
     @Value("${external.class.filename}")
     private String externalClassFileName;
 
-    @Value("${read.from.file}")
+    @Value("${read.from.file:false}")
     private boolean readFromFile;
     @Value("${logging.file.name}")
     private String loggingFileName;
@@ -55,6 +52,17 @@ public class MetricsService {
 
     @Value("${step}")
     String step;
+    @Value("${timestamp.color.before.one.day}")
+    private String redColor;
+
+    @Value("${timestamp.color.before.six.hours}")
+    private String yellowColor;
+
+    @Value("${timestamp.color.same.time}")
+    private String greenColor;
+
+    @Value("${timestamp.color.default}")
+    private String whiteColor;
 
 
     public MetricsService(WebClient.Builder webClientBuilder,
@@ -68,60 +76,66 @@ public class MetricsService {
 
         PrometheusMetricResponse prometheusMetricResponses;
 
-        if (readFromFile) {
-            logger.debug("Reading metrics data from file: {}", metricResponseFilePath);
-            prometheusMetricResponses = readJsonDataFromFile();
-        } else {
-            logger.debug("Fetching metrics data from Prometheus API: {}", searchFromPrometheusApi);
-            prometheusMetricResponses = fetchDataFromApi();
-        }
+        logger.debug("Fetching metrics data from Prometheus API: {}", searchFromPrometheusApi);
+        prometheusMetricResponses = fetchDataFromApi();
 
         List<String> metricsFromPrometheus = prometheusMetricResponses.getData();
         List<String> algorithmList = readAlgorithmsFromExternalClass();
 
-        DifferentPrefixAlgorithmResult differentPrefixResult = new DifferentPrefixAlgorithmResult(new HashMap<>(), new ArrayList<>(), new ArrayList<>());
-        ExistingAlgorithmResult existingAlgorithmResult = new ExistingAlgorithmResult(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        NonExistingAlgorithmResult nonExistingAlgorithmResult = new NonExistingAlgorithmResult(new ArrayList<>());
+        List<Map<String, String>> existingAlgorithmsList = new ArrayList<>();
+        List<Map<String, String>> differentPrefixAlgorithmsList = new ArrayList<>();
+        List<String> nonExistingAlgorithms = new ArrayList<>();
+
 
         for (String algorithm : algorithmList) {
             boolean found = false;
             String color = "white";
+            String timestampAsString;
+            Instant timestamp;
             for (String metricResponse : metricsFromPrometheus) {
                 String prefixedMetric = algorithmsPrefix + algorithm;
+
+                Map<String, String> algorithmData = new HashMap<>();
                 if (prefixedMetric.equals(metricResponse)) {
                     found = true;
-                    existingAlgorithmResult.getExistingAlgorithms().add(algorithm);
-                    existingAlgorithmResult.getExistingAlgorithmsTimeStamps().add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count")); //prefixedMetric
-                    color = getColorForTimestamp(findLastFoundTimestamp("prometheus_http_response_size_bytes_count"));
-                    existingAlgorithmResult.getExistingAlgorithmsColors().add(color);
+                    timestamp = findLastFoundTimestamp(prefixedMetric);
+                    timestampAsString = findLastFoundTimestampAsString(timestamp);
+                    color = getColorForTimestamp(timestamp);
+
+                    algorithmData.put("algorithm", algorithm);
+                    algorithmData.put("prefixedMetric", prefixedMetric);
+                    algorithmData.put("timestamp", timestampAsString);
+                    algorithmData.put("color", color);
+
+                    existingAlgorithmsList.add(algorithmData);
                     break;
+
                 } else if (metricResponse.contains(algorithm)) {
                     found = true;
-                    differentPrefixResult.getAlgorithmsForDifferentPrefix().put(algorithm, metricResponse);
-                    differentPrefixResult.getAlgorithmsForDifferentPrefixTimestamps().add(findLastFoundTimestampAsString("prometheus_http_response_size_bytes_count"));//metricResponse
-                    color = getColorForTimestamp(findLastFoundTimestamp("prometheus_http_response_size_bytes_count"));
-                    differentPrefixResult.getAlgorithmsForDifferentPrefixColors().add(color);
+                    timestamp = findLastFoundTimestamp(metricResponse);
+                    timestampAsString = findLastFoundTimestampAsString(timestamp);
+                    color = getColorForTimestamp(timestamp);
+
+                    algorithmData.put("algorithm", algorithm);
+                    algorithmData.put("metricResponse", metricResponse);
+                    algorithmData.put("timestamp", timestampAsString);
+                    algorithmData.put("color", color);
+
+                    differentPrefixAlgorithmsList.add(algorithmData);
+
                 }
             }
-
             if (!found) {
-                nonExistingAlgorithmResult.getNonExistingAlgorithms().add(algorithm);
+                nonExistingAlgorithms.add(algorithm);
             }
         }
 
-        ResultObject resultObject = new ResultObject(existingAlgorithmResult, nonExistingAlgorithmResult, differentPrefixResult);
+        ResultObject resultObject = new ResultObject(nonExistingAlgorithms, existingAlgorithmsList, differentPrefixAlgorithmsList);
 
         logger.info("Algorithm metrics search completed.");
         deleteAlgorithmClassFile();
 
         return resultObject;
-    }
-
-
-    //for only local test purposes
-    private PrometheusMetricResponse readJsonDataFromFile() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(new File(metricResponseFilePath), PrometheusMetricResponse.class);
     }
 
 
@@ -210,14 +224,26 @@ public class MetricsService {
 
     public Instant findLastFoundTimestamp(String metric) {
         Instant endTimestamp = Instant.now();
-        Instant startTimestamp = endTimestamp.minus(Duration.ofDays(dateDuration));
+        Instant startTimestamp = endTimestamp.minus(Duration.ofDays(1));
 
-        PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestamp, endTimestamp, step);
+        while (startTimestamp.isBefore(endTimestamp) && Duration.between(startTimestamp, Instant.now()).toDays() <= dateDuration) {
+            PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestamp, endTimestamp, step);
 
-        if (prometheusMetricResponseTimestamp == null || prometheusMetricResponseTimestamp.getData().getResult() == null) {
-            return null;
+            if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
+                Instant maxLastValueTimestamp = getMaxLastValueTimestamp(prometheusMetricResponseTimestamp);
+                if (maxLastValueTimestamp != null) {
+                    return maxLastValueTimestamp;
+                }
+            }
+            startTimestamp = startTimestamp.minus(Duration.ofDays(1));
+            endTimestamp = endTimestamp.minus(Duration.ofDays(1));
         }
-        List<Result> results = prometheusMetricResponseTimestamp.getData().getResult();
+
+        return null;
+    }
+
+    private Instant getMaxLastValueTimestamp(PrometheusMetricResponseTimestamp response) {
+        List<Result> results = response.getData().getResult();
         Double maxLastValue = null;
 
         for (Result result : results) {
@@ -229,6 +255,7 @@ public class MetricsService {
                 }
             }
         }
+
         if (maxLastValue != null) {
             long epochSeconds = maxLastValue.longValue();
             return Instant.ofEpochSecond(epochSeconds);
@@ -237,11 +264,10 @@ public class MetricsService {
         return null;
     }
 
-    public String findLastFoundTimestampAsString(String metric) {
-        Instant lastFoundInstant = findLastFoundTimestamp(metric);
+    public String findLastFoundTimestampAsString(Instant lastFoundInstant) {
         if (lastFoundInstant != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-            return lastFoundInstant.atZone(ZoneId.systemDefault()).format(formatter);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").withZone(ZoneOffset.UTC);
+            return formatter.format(lastFoundInstant);
         }
         return null;
     }
@@ -277,15 +303,15 @@ public class MetricsService {
             Instant sixHoursAgo = now.minus(Duration.ofHours(6));
 
             if (timestamp.isBefore(oneDayAgo)) {
-                return "red";
+                return redColor;
             } else if (timestamp.isBefore(sixHoursAgo)) {
-                return "yellow";
+                return yellowColor;
             } else if (timestamp.truncatedTo(ChronoUnit.MINUTES).equals(now.truncatedTo(ChronoUnit.MINUTES))) {
-                return "green";
+                return greenColor;
             }
         }
 
-        return "white";
+        return whiteColor;
     }
 
 }
