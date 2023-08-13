@@ -28,15 +28,13 @@ public class MetricsController {
         logger.info("Handling request to search metrics.");
 
         ResultObject resultObject = metricsService.findAlgorithmMetrics();
-;
 
         model.addAttribute("prefix", algorithmsPrefix);
         model.addAttribute("dateTimeLocal", resultObject.getDateTimeLocalFormatted());
         model.addAttribute("dateTimeUTC", resultObject.getDateTimeUTCFormatted());
-        model.addAttribute("existingAlgorithmList",resultObject.getExistingAlgorithmsList());
-        model.addAttribute("nonExistingAlgorithms",resultObject.getNonExistingAlgorithms());
-        model.addAttribute("differentPrefixAlgorithmList",resultObject.getDifferentPrefixAlgorithmsList());
-
+        model.addAttribute("existingAlgorithmList", resultObject.getExistingAlgorithmsList());
+        model.addAttribute("nonExistingAlgorithms", resultObject.getNonExistingAlgorithms());
+        model.addAttribute("differentPrefixAlgorithmList", resultObject.getDifferentPrefixAlgorithmsList());
 
         logger.info("Adding metrics data to the model.");
         return "index";

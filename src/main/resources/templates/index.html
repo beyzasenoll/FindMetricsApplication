@@ -48,10 +48,11 @@
                     <tr th:each="existingAlgorithm, iterStat : ${existingAlgorithmList}">
                         <td th:text="${iterStat.count}"></td>
                         <td th:style="'padding-right: 1000px;'">
-                            <span th:text="${existingAlgorithm['algorithm']}" th:title="${existingAlgorithm['prefixedMetric']}"></span>
+                            <span th:text="${existingAlgorithm['algorithm']}"
+                                  th:title="${existingAlgorithm['prefixedMetric']}"></span>
                             <br/>
-                                <span th:text="'Timestamp: ' + ${existingAlgorithm['timestamp']}"
-                                th:style="'color: ' + ${existingAlgorithm['color']}"></span>
+                            <span th:text="'Timestamp: ' + ${existingAlgorithm['timestamp']}"
+                                  th:style="'color: ' + ${existingAlgorithm['color']}"></span>
                             </span>
                         </td>
                         </td>
@@ -75,6 +76,7 @@
                         <td style="padding-right:1000px" th:text="${nonExistingAlgorithm}"
                             th:title="${prefix + nonExistingAlgorithm}"></td>
                     </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -93,12 +95,13 @@
                     <tr th:each="prefixEntry, prefixIterStat : ${differentPrefixAlgorithmList}">
                         <td th:text="${prefixIterStat.count}"></td>
                         <td th:style="'padding-right: 1000px;'">
-                             <span th:text="${prefixEntry['algorithm']}" th:title="${prefixEntry['metricResponse']}"></span>
-                             <br/>
-                         <span th:text="'Timestamp: ' + ${prefixEntry['timestamp']}"
-                            th:style="'color: ' + ${prefixEntry['color']}"></span>
+                            <span th:text="${prefixEntry['algorithm']}"
+                                  th:title="${prefixEntry['metricResponse']}"></span>
+                            <br/>
+                            <span th:text="'Timestamp: ' + ${prefixEntry['timestamp']}"
+                                  th:style="'color: ' + ${prefixEntry['color']}"></span>
                             </span>
-                     </span>
+                            </span>
                         </td>
                     </tr>
                     </tbody>

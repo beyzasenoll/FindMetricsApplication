@@ -1,6 +1,770 @@
-2023-08-10 19:59:37.484  INFO 27545 --- [http-nio-8089-exec-3] c.a.m.domain.service.MetricsService      : Reading algorithms from external class.
-2023-08-10 19:59:37.486  INFO 27545 --- [http-nio-8089-exec-3] c.a.m.domain.service.MetricsService      : Package lines have been deleted from the file.
-2023-08-10 19:59:37.638  INFO 27545 --- [http-nio-8089-exec-3] c.a.m.domain.service.MetricsService      : Successfully read algorithms from the external class.
-2023-08-10 20:00:00.282  INFO 27545 --- [http-nio-8089-exec-3] c.a.m.domain.service.MetricsService      : Algorithm metrics search completed.
-2023-08-10 20:00:00.285  INFO 27545 --- [http-nio-8089-exec-3] c.a.m.domain.service.MetricsService      : AlgorithmNames.class file has been deleted.
-2023-08-10 20:00:00.286  INFO 27545 --- [http-nio-8089-exec-3] c.a.m.controller.MetricsController       : Adding metrics data to the model.
+2023-08-14 00:54:47.362  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:47.682  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Reading algorithms from external class.
+2023-08-14 00:54:47.686  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Package lines have been deleted from the file.
+2023-08-14 00:54:47.824  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Successfully read algorithms from the external class.
+2023-08-14 00:54:47.825  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:47.825  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:47.825  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:47.891  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:47.892  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:47.892  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:47.973  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:47.973  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:47.973  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:47.974  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:47.974  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:47.974  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:47.975  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.035  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.035  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.036  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.102  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.103  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:48.103  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:48.103  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:48.103  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:48.103  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.104  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.170  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.247  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.247  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:48.247  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:48.249  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:48.252  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:48.252  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.253  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.319  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.320  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.320  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.390  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.391  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:48.391  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:48.391  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:48.392  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:48.392  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.392  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.455  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.455  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.455  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.525  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.526  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:48.526  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:48.526  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:48.526  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:48.527  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.527  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.590  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.590  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.591  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.653  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:48.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:48.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:48.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:48.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.714  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.714  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.715  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.775  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.775  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:48.775  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:48.775  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:48.775  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:48.775  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.776  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.835  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.835  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.835  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.897  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.897  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:48.897  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:48.897  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:48.897  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:48.898  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.898  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:48.959  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:48.959  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:48.959  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.025  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.026  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:49.026  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:49.026  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:49.026  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:49.026  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.027  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.089  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.089  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.089  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:49.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:49.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:49.155  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:49.155  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.155  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.218  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.218  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.219  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.282  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.283  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:49.283  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:49.283  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:49.284  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:49.284  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.284  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.346  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.346  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.346  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.408  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.408  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:49.409  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:49.409  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:49.409  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:49.409  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.409  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.471  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.471  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.472  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.539  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:49.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:49.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:49.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:49.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.604  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.605  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.606  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.668  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.669  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:49.669  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:49.669  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:49.669  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:49.670  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.670  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.732  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.733  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.733  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.867  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.867  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:49.867  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:49.867  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:49.868  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:49.868  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.869  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:49.934  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:49.934  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:49.935  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.065  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.066  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:50.066  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:50.066  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:50.067  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:50.067  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.067  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.130  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.130  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.130  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.197  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.197  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:50.197  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:50.197  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:50.198  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:50.198  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.198  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.264  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.265  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.266  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.335  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.335  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:50.335  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:50.336  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:50.336  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:50.336  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.336  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.400  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.400  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.400  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.470  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.470  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:50.470  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:50.470  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:50.471  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:50.471  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.471  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.532  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.532  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.533  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.595  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.596  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:50.596  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:50.596  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:50.596  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:50.596  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.596  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.656  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.657  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.657  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.723  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.724  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:50.724  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:50.724  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:50.724  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:50.724  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.725  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.788  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.788  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.789  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.858  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.858  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:50.858  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:50.859  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:50.859  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:50.859  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.860  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:50.922  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:50.922  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:50.922  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.047  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.048  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:51.048  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:51.048  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:51.048  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:51.049  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.049  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.109  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.109  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.109  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.170  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:51.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:51.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:51.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:51.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.171  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.231  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.231  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.231  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.299  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.299  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:51.299  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:51.300  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:51.300  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:51.300  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.300  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.360  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.361  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.361  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.425  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.426  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:51.426  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:51.426  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:51.426  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:51.426  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.426  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.486  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.486  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.486  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.621  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.621  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:51.621  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:51.621  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:51.621  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:51.621  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.621  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.683  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.683  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.684  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.747  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.747  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:51.747  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:51.747  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:51.748  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:51.748  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.748  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.806  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.807  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.807  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.928  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.928  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:51.928  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:51.928  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:51.929  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:51.929  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.929  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:51.988  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:51.988  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:51.989  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.053  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.053  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.053  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.054  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.055  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.055  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.055  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.122  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.123  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.123  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.123  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.124  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.124  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.124  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.184  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.184  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.185  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.247  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.247  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.247  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.248  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.248  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.248  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.248  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.330  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.330  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.330  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.330  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.330  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.330  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.331  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.392  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.392  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.392  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.454  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.454  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.454  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.454  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.454  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.454  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.454  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.513  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.514  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.514  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.634  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.634  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.634  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.694  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.694  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.694  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.695  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.695  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.695  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.695  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.755  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.755  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.755  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.819  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.819  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.819  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.819  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.820  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.820  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.821  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.881  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.881  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.881  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:52.943  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:52.943  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:52.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:52.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:52.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:52.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:52.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.004  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.005  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.005  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.070  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.071  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:53.071  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:53.071  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:53.071  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:53.071  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.132  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.132  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.133  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.257  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.258  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:53.258  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:53.258  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:53.258  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:53.258  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.258  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.319  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.319  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.320  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.385  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.385  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:53.385  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:53.385  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:53.386  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:53.386  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.386  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.448  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.448  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.448  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.512  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.513  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:53.513  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:53.513  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:53.513  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:53.513  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.513  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.576  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.576  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.576  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.643  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.644  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:53.644  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:53.644  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:53.644  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:53.644  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.644  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.713  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.713  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.713  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.841  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.841  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:53.841  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:53.842  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:53.843  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:53.843  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.843  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.904  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.904  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.905  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:53.971  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:53.971  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:53.971  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:53.972  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:53.972  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:53.972  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:53.972  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.034  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.034  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.035  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.098  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.099  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.099  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.099  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.101  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.101  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.102  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.235  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.236  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.236  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.236  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.236  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.236  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.236  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.302  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.302  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.302  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.303  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.303  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.303  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.303  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.368  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.368  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.368  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.368  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.369  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.369  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.369  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.432  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.432  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.432  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.432  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.432  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.432  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.432  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.494  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.494  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.494  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.494  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.495  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.495  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.495  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.574  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.575  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.629  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.629  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.630  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.630  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.630  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.693  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.693  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.693  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.693  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.693  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.693  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.694  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.755  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.755  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.755  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.756  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.756  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.756  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.756  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.820  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.820  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.820  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.820  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.821  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.821  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.821  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:54.945  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:54.946  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:54.946  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:54.946  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:54.946  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:54.946  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:54.946  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.069  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.069  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.069  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.069  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.070  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.070  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.070  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.212  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.212  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.212  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.212  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.213  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.213  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.213  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.285  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.285  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.285  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.286  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.287  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.287  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.287  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.410  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.410  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.410  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.410  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.413  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.413  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.414  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.539  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.539  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.539  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.540  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.663  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.663  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.663  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.663  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.664  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.664  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.664  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.744  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.745  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.745  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.745  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.746  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.746  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.746  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.870  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.870  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.871  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.871  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.871  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.871  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.871  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:55.935  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:55.936  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:55.936  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:55.936  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:55.936  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:55.936  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:55.936  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.002  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.002  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:56.002  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:56.002  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:56.002  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:56.002  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.003  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.125  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.126  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:56.126  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:56.126  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:56.126  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:56.126  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.127  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.254  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.255  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:56.255  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:56.255  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:56.256  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:56.256  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.256  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.378  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.378  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:56.378  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:56.378  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:56.378  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:56.378  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.379  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.500  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.500  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:56.500  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:56.500  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:56.501  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:56.501  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.501  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.627  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.628  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:56.628  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:56.628  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:56.629  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:56.629  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.629  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.690  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.690  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.690  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.754  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.754  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.755  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.818  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.818  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.819  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.879  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.880  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.880  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:56.942  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:56.942  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:56.942  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:56.942  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Chose color.
+2023-08-14 00:54:56.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:56.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:56.944  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.005  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.005  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.005  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.072  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.133  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.134  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.134  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.203  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.204  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.204  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.204  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.204  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.204  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.205  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.267  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.268  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.268  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.337  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.337  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.337  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.337  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.337  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.338  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.338  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.403  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.403  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.404  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.404  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.404  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.404  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.404  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.467  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.468  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.468  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.531  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.531  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.531  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.532  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.532  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.532  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.532  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.593  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.594  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.594  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.653  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.653  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.654  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.712  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.712  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.712  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.772  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.772  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.772  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.772  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.772  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.772  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.772  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.831  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.831  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.831  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.892  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.892  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:57.892  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:57.892  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:57.893  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:57.893  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.894  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:57.954  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:57.954  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:57.954  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:58.019  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:58.019  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:58.019  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:58.019  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:58.019  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:58.019  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:58.020  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:58.081  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:58.081  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:58.082  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:58.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:58.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:58.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:58.154  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:58.155  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Find timestamp
+2023-08-14 00:54:58.155  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Creating URL
+2023-08-14 00:54:58.155  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Fetching Data
+2023-08-14 00:54:58.279  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Max value of timestamp
+2023-08-14 00:54:58.279  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Found max value of timestamp 
+2023-08-14 00:54:58.279  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Format timestamp
+2023-08-14 00:54:58.279  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Getting Color
+2023-08-14 00:54:58.289  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : Algorithm metrics search completed.
+2023-08-14 00:54:58.291  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.domain.service.MetricsService      : AlgorithmNames.class file has been deleted.
+2023-08-14 00:54:58.292  INFO 83365 --- [http-nio-8089-exec-1] c.a.m.controller.MetricsController       : Adding metrics data to the model.
+2023-08-14 00:57:53.163  INFO 83634 --- [main] c.assia.metrics.FindMetricsApplication   : Starting FindMetricsApplication using Java 11.0.19 on MacBook-Air-2.local with PID 83634 (/Users/beyzasenol/Desktop/SpringBootProjects/findMetrics/target/classes started by beyzasenol in /Users/beyzasenol/Desktop/SpringBootProjects/findMetrics)
+2023-08-14 00:57:53.164  INFO 83634 --- [main] c.assia.metrics.FindMetricsApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-08-14 00:57:53.561  INFO 83634 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8089 (http)
+2023-08-14 00:57:53.564  INFO 83634 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-14 00:57:53.564  INFO 83634 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-08-14 00:57:53.599  INFO 83634 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-14 00:57:53.599  INFO 83634 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 407 ms
+2023-08-14 00:57:53.688 ERROR 83634 --- [main] i.n.r.d.DnsServerAddressStreamProviders  : Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2023-08-14 00:57:53.782  INFO 83634 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-08-14 00:57:53.846  INFO 83634 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8089 (http) with context path ''
+2023-08-14 00:57:53.853  INFO 83634 --- [main] c.assia.metrics.FindMetricsApplication   : Started FindMetricsApplication in 0.856 seconds (JVM running for 1.267)

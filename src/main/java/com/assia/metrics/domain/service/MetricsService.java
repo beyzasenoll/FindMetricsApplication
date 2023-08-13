@@ -223,6 +223,8 @@ public class MetricsService {
     }
 
     public Instant findLastFoundTimestamp(String metric) {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        logger.info("Find timestamp");
         Instant endTimestamp = Instant.now();
         Instant startTimestamp = endTimestamp.minus(Duration.ofDays(1));
 
@@ -243,6 +245,8 @@ public class MetricsService {
     }
 
     private Instant getMaxLastValueTimestamp(PrometheusMetricResponseTimestamp response) {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        logger.info("Getting Max value of timestamp");
         List<Result> results = response.getData().getResult();
         Double maxLastValue = null;
 
@@ -258,6 +262,7 @@ public class MetricsService {
 
         if (maxLastValue != null) {
             long epochSeconds = maxLastValue.longValue();
+            logger.info("Found max value of timestamp ");
             return Instant.ofEpochSecond(epochSeconds);
         }
 
@@ -265,6 +270,8 @@ public class MetricsService {
     }
 
     public String findLastFoundTimestampAsString(Instant lastFoundInstant) {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        logger.info("Format timestamp");
         if (lastFoundInstant != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").withZone(ZoneOffset.UTC);
             return formatter.format(lastFoundInstant);
@@ -274,6 +281,8 @@ public class MetricsService {
 
     private PrometheusMetricResponseTimestamp createUrlAndFetchData(String query, Instant startTimestamp, Instant endTimestamp, String step) {
         String apiUrl = "http://localhost:9090";
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        logger.info("Creating URL");
         String queryUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .path("/api/v1/query_range")
                 .queryParam("query", query)
@@ -289,6 +298,8 @@ public class MetricsService {
     }
 
     private <T> T fetchDataFromApiUrl(String url, Class<T> responseType) {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        logger.info("Fetching Data");
         return webClient.get()
                 .uri(url)
                 .retrieve()
@@ -297,6 +308,8 @@ public class MetricsService {
     }
 
     private String getColorForTimestamp(Instant timestamp) {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        logger.info("Getting Color");
         if (timestamp != null) {
             Instant now = Instant.now();
             Instant oneDayAgo = now.minus(Duration.ofDays(1));
@@ -310,6 +323,7 @@ public class MetricsService {
                 return greenColor;
             }
         }
+        logger.info("Chose color.");
 
         return whiteColor;
     }
