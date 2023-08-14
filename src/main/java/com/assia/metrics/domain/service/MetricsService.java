@@ -23,6 +23,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
+
+
 @Service
 public class MetricsService {
 
@@ -63,6 +70,11 @@ public class MetricsService {
 
     @Value("${timestamp.color.default}")
     private String whiteColor;
+
+
+    private final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+    private final int THREAD_COUNT = 4; // İstediğiniz iş parçacığı sayısını ayarlayın
+    private final ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
 
 
     public MetricsService(WebClient.Builder webClientBuilder,
@@ -211,7 +223,6 @@ public class MetricsService {
             logger.warn("AlgorithmNames.class file does not exist.");
         }
     }
-
     private void resetLogFile() {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         String logFileName = loggingFileName;
@@ -221,7 +232,6 @@ public class MetricsService {
             e.printStackTrace();
         }
     }
-
     public Instant findLastFoundTimestamp(String metric) {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Find timestamp");
@@ -324,7 +334,6 @@ public class MetricsService {
             }
         }
         logger.info("Chose color.");
-
         return whiteColor;
     }
 
