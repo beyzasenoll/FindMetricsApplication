@@ -22,8 +22,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 
 @Service
@@ -72,95 +74,96 @@ public class MetricsService {
                           @Value("${prometheus.api.base-url}") String prometheusApiBaseUrl) {
         this.webClient = webClientBuilder.baseUrl(prometheusApiBaseUrl).build();
     }
-  public ResultObject findAlgorithmMetrics() throws IOException {
-      final Logger logger = LoggerFactory.getLogger(MetricsService.class);
-      resetLogFile();
 
-      PrometheusMetricResponse prometheusMetricResponses;
+    public ResultObject findAlgorithmMetrics() throws IOException {
+        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
+        resetLogFile();
 
-      logger.debug("Fetching metrics data from Prometheus API: {}", searchFromPrometheusApi);
-      prometheusMetricResponses = fetchDataFromApi();
+        PrometheusMetricResponse prometheusMetricResponses;
 
-      List<String> metricsFromPrometheus = prometheusMetricResponses.getData();
-      List<String> algorithmList = readAlgorithmsFromExternalClass();
+        logger.debug("Fetching metrics data from Prometheus API: {}", searchFromPrometheusApi);
+        prometheusMetricResponses = fetchDataFromApi();
 
-      List<Map<String, String>> existingAlgorithmsList = new ArrayList<>();
-      List<Map<String, String>> differentPrefixAlgorithmsList = new ArrayList<>();
-      List<String> nonExistingAlgorithms = new ArrayList<>();
+        List<String> metricsFromPrometheus = prometheusMetricResponses.getData();
+        List<String> algorithmList = readAlgorithmsFromExternalClass();
 
-      ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        List<Map<String, String>> existingAlgorithmsList = new ArrayList<>();
+        List<Map<String, String>> differentPrefixAlgorithmsList = new ArrayList<>();
+        List<String> nonExistingAlgorithms = new ArrayList<>();
 
-      List<Future<?>> futures = new ArrayList<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-      for (String algorithm : algorithmList) {
-          futures.add(executorService.submit(() -> {
-              boolean found = false;
-              String color = "white";
-              String timestampAsString;
-              Instant timestamp;
+        List<Future<?>> futures = new ArrayList<>();
 
-              for (String metricResponse : metricsFromPrometheus) {
-                  String prefixedMetric = algorithmsPrefix + algorithm;
+        for (String algorithm : algorithmList) {
+            futures.add(executorService.submit(() -> {
+                boolean found = false;
+                String color = "white";
+                String timestampAsString;
+                Instant timestamp;
 
-                  Map<String, String> algorithmData = new HashMap<>();
-                  if (prefixedMetric.equals(metricResponse)) {
-                      found = true;
-                      timestamp = findLastFoundTimestamp(prefixedMetric);
-                      timestampAsString = findLastFoundTimestampAsString(timestamp);
-                      color = getColorForTimestamp(timestamp);
+                for (String metricResponse : metricsFromPrometheus) {
+                    String prefixedMetric = algorithmsPrefix + algorithm;
 
-                      algorithmData.put("algorithm", algorithm);
-                      algorithmData.put("prefixedMetric", prefixedMetric);
-                      algorithmData.put("timestamp", timestampAsString);
-                      algorithmData.put("color", color);
+                    Map<String, String> algorithmData = new HashMap<>();
+                    if (prefixedMetric.equals(metricResponse)) {
+                        found = true;
+                        timestamp = findLastFoundTimestamp(prefixedMetric);
+                        timestampAsString = findLastFoundTimestampAsString(timestamp);
+                        color = getColorForTimestamp(timestamp);
 
-                      existingAlgorithmsList.add(algorithmData);
-                      break;
+                        algorithmData.put("algorithm", algorithm);
+                        algorithmData.put("prefixedMetric", prefixedMetric);
+                        algorithmData.put("timestamp", timestampAsString);
+                        algorithmData.put("color", color);
 
-                  } else if (metricResponse.contains(algorithm)) {
-                      found = true;
-                      timestamp = findLastFoundTimestamp(metricResponse);
-                      timestampAsString = findLastFoundTimestampAsString(timestamp);
-                      color = getColorForTimestamp(timestamp);
+                        existingAlgorithmsList.add(algorithmData);
+                        break;
 
-                      algorithmData.put("algorithm", algorithm);
-                      algorithmData.put("metricResponse", metricResponse);
-                      algorithmData.put("timestamp", timestampAsString);
-                      algorithmData.put("color", color);
+                    } else if (metricResponse.contains(algorithm)) {
+                        found = true;
+                        timestamp = findLastFoundTimestamp(metricResponse);
+                        timestampAsString = findLastFoundTimestampAsString(timestamp);
+                        color = getColorForTimestamp(timestamp);
 
-                      differentPrefixAlgorithmsList.add(algorithmData);
+                        algorithmData.put("algorithm", algorithm);
+                        algorithmData.put("metricResponse", metricResponse);
+                        algorithmData.put("timestamp", timestampAsString);
+                        algorithmData.put("color", color);
 
-                  }
-              }
+                        differentPrefixAlgorithmsList.add(algorithmData);
 
-              if (!found) {
-                  nonExistingAlgorithms.add(algorithm);
-              }
-          }));
-      }
+                    }
+                }
 
-      for (Future<?> future : futures) {
-          try {
-              future.get();
-          } catch (Exception e) {
-              logger.error("Error executing task: {}", e.getMessage());
-          }
-      }
+                if (!found) {
+                    nonExistingAlgorithms.add(algorithm);
+                }
+            }));
+        }
 
-      executorService.shutdown();
-      try {
-          executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-      } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-      }
+        for (Future<?> future : futures) {
+            try {
+                future.get();
+            } catch (Exception e) {
+                logger.error("Error executing task: {}", e.getMessage());
+            }
+        }
 
-      ResultObject resultObject = new ResultObject(nonExistingAlgorithms, existingAlgorithmsList, differentPrefixAlgorithmsList);
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
 
-      logger.info("Algorithm metrics search completed.");
-      deleteAlgorithmClassFile();
+        ResultObject resultObject = new ResultObject(nonExistingAlgorithms, existingAlgorithmsList, differentPrefixAlgorithmsList);
 
-      return resultObject;
-  }
+        logger.info("Algorithm metrics search completed.");
+        deleteAlgorithmClassFile();
+
+        return resultObject;
+    }
 
 
     public List<String> readAlgorithmsFromExternalClass() {
@@ -235,6 +238,7 @@ public class MetricsService {
             logger.warn("AlgorithmNames.class file does not exist.");
         }
     }
+
     private void resetLogFile() {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         String logFileName = loggingFileName;
@@ -244,6 +248,7 @@ public class MetricsService {
             e.printStackTrace();
         }
     }
+
     public Instant findLastFoundTimestamp(String metric) {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Finding last found timestamp for metric: {}", metric);
