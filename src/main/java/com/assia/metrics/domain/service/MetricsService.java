@@ -56,7 +56,7 @@ public class MetricsService {
     private int dateDuration;
 
     @Value("${step}")
-    String step;
+    int step;
     @Value("${timestamp.color.before.one.day}")
     private String redColor;
 
@@ -253,28 +253,35 @@ public class MetricsService {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Finding last found timestamp for metric: {}", metric);
 
-        Instant endTimestamp = Instant.now();
-        Instant startTimestamp = endTimestamp.minus(Duration.ofDays(1));
+        Instant currentInstant = Instant.now();
+        Instant startInstant = currentInstant.minus(6, ChronoUnit.HOURS);
 
-        while (startTimestamp.isBefore(endTimestamp) && Duration.between(startTimestamp, Instant.now()).toDays() <= dateDuration) {
-            logger.info("Fetching data for metric {} with start timestamp {} and end timestamp {}", metric, startTimestamp, endTimestamp);
-            PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestamp, endTimestamp, step);
 
-            if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
-                Instant maxLastValueTimestamp = getMaxLastValueTimestamp(prometheusMetricResponseTimestamp);
-                if (maxLastValueTimestamp != null) {
-                    logger.info("Returning max last value timestamp for metric: {}", metric);
-                    return maxLastValueTimestamp;
+        long endTimestampSeconds = currentInstant.getEpochSecond();
+        long startTimestampSeconds = startInstant.getEpochSecond();;
+
+
+            while (startTimestampSeconds < endTimestampSeconds && Duration.ofMillis(System.currentTimeMillis() - startTimestampSeconds).toDays() <= dateDuration*86400) {
+                logger.info("Fetching data for metric {} with start timestamp {} and end timestamp {}", metric, startTimestampSeconds, endTimestampSeconds);
+                PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
+
+                if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
+                    Instant maxLastValueTimestamp = getMaxLastValueTimestamp(prometheusMetricResponseTimestamp);
+                    if (maxLastValueTimestamp != null) {
+                        logger.info("Returning max last value timestamp for metric: {}", metric);
+                        return maxLastValueTimestamp;
+                    }
                 }
+
+                startTimestampSeconds -= Duration.ofHours(6).toSeconds();
+                endTimestampSeconds -= Duration.ofHours(6).toSeconds();
             }
 
-            startTimestamp = startTimestamp.minus(Duration.ofDays(1));
-            endTimestamp = endTimestamp.minus(Duration.ofDays(1));
-        }
+            logger.info("No valid timestamp found within the specified range for metric: {}", metric);
+            return null;
 
-        logger.info("No valid timestamp found within the specified range for metric: {}", metric);
-        return null;
-    }
+
+            }
 
     private Instant getMaxLastValueTimestamp(PrometheusMetricResponseTimestamp response) {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
@@ -317,15 +324,15 @@ public class MetricsService {
         return null;
     }
 
-    private PrometheusMetricResponseTimestamp createUrlAndFetchData(String query, Instant startTimestamp, Instant endTimestamp, String step) {
+    private PrometheusMetricResponseTimestamp createUrlAndFetchData(String query, long startTimestamp, long endTimestamp, int step) {
         String apiUrl = "http://localhost:9090";
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Creating URL");
         String queryUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .path("/api/v1/query_range")
                 .queryParam("query", query)
-                .queryParam("start", startTimestamp.toString())
-                .queryParam("end", endTimestamp.toString())
+                .queryParam("start", startTimestamp)
+                .queryParam("end", endTimestamp)
                 .queryParam("step", step)
                 .toUriString();
         return fetchDataFromApiUrl(queryUrl, PrometheusMetricResponseTimestamp.class);
