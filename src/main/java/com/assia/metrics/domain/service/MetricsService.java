@@ -254,34 +254,33 @@ public class MetricsService {
         logger.info("Finding last found timestamp for metric: {}", metric);
 
         Instant currentInstant = Instant.now();
-        Instant startInstant = currentInstant.minus(6, ChronoUnit.HOURS);
+        Instant startInstant = currentInstant.minus(1, ChronoUnit.DAYS);
 
 
         long endTimestampSeconds = currentInstant.getEpochSecond();
-        long startTimestampSeconds = startInstant.getEpochSecond();;
+        long startTimestampSeconds = startInstant.getEpochSecond();
 
 
-            while (startTimestampSeconds < endTimestampSeconds && Duration.ofMillis(System.currentTimeMillis() - startTimestampSeconds).toDays() <= dateDuration*86400) {
-                logger.info("Fetching data for metric {} with start timestamp {} and end timestamp {}", metric, startTimestampSeconds, endTimestampSeconds);
-                PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
-
-                if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
-                    Instant maxLastValueTimestamp = getMaxLastValueTimestamp(prometheusMetricResponseTimestamp);
-                    if (maxLastValueTimestamp != null) {
-                        logger.info("Returning max last value timestamp for metric: {}", metric);
-                        return maxLastValueTimestamp;
-                    }
+        while (startTimestampSeconds < endTimestampSeconds && currentInstant.getEpochSecond() - startTimestampSeconds <= dateDuration * 86400) {
+            logger.info("Fetching data for metric {} with start timestamp {} and end timestamp {}", metric, startTimestampSeconds, endTimestampSeconds);
+            PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
+            if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
+                Instant maxLastValueTimestamp = getLastPeakTimestamp(prometheusMetricResponseTimestamp);
+                if (maxLastValueTimestamp != null) {
+                    logger.info("Returning max last value timestamp for metric: {}", metric);
+                    return maxLastValueTimestamp;
                 }
-
-                startTimestampSeconds -= Duration.ofHours(6).toSeconds();
-                endTimestampSeconds -= Duration.ofHours(6).toSeconds();
             }
 
-            logger.info("No valid timestamp found within the specified range for metric: {}", metric);
-            return null;
+            startTimestampSeconds -= Duration.ofDays(1).toSeconds();
+            endTimestampSeconds -= Duration.ofDays(1).toSeconds();
+        }
+
+        logger.info("No valid timestamp found within the specified range for metric: {}", metric);
+        return null;
 
 
-            }
+    }
 
     private Instant getMaxLastValueTimestamp(PrometheusMetricResponseTimestamp response) {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
@@ -310,6 +309,44 @@ public class MetricsService {
         return null;
     }
 
+    private Instant getLastPeakTimestamp(PrometheusMetricResponseTimestamp response) {
+
+        List<Result> results = response.getData().getResult();
+        List<List<Double>> allSubLists = new ArrayList<>();
+        List<Double> currentSubList = new ArrayList<>();
+        List<Double> firstElementsOfAllSubLists = new ArrayList<>();
+
+
+        for (Result result : results) {
+            List<List<Double>> values = result.getValues();
+            if (values != null && !values.isEmpty()) {
+                int index = values.size() - 1;
+                while (index >= 0) {
+                    String numericValue = values.get(index).get(1).toString();
+                    if (!numericValue.contains("e") && !numericValue.contains("E")) {
+                        currentSubList.add(values.get(index).get(0));
+                    } else {
+                        if (!currentSubList.isEmpty()) {
+                            allSubLists.add(new ArrayList<>(currentSubList));
+                            currentSubList.clear();
+                        }
+                    }
+                    index--;
+                }
+            }
+        }
+        for (int i=0;i<allSubLists.size();i++) {
+            if (!allSubLists.get(i).isEmpty()) {
+                firstElementsOfAllSubLists.add(allSubLists.get(i).get(0));
+            }
+        }
+        if (!firstElementsOfAllSubLists.isEmpty() && firstElementsOfAllSubLists.get(0) != null) {
+            long epochSeconds = firstElementsOfAllSubLists.get(0).longValue();
+            return Instant.ofEpochSecond(epochSeconds);
+        }
+        return null;
+    }
+
     public String findLastFoundTimestampAsString(Instant lastFoundInstant) {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Formatting timestamp to string");
@@ -330,7 +367,7 @@ public class MetricsService {
         logger.info("Creating URL");
         String queryUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .path("/api/v1/query_range")
-                .queryParam("query", query)
+                .queryParam("query", "sum(" + query + ")")
                 .queryParam("start", startTimestamp)
                 .queryParam("end", endTimestamp)
                 .queryParam("step", step)
@@ -368,7 +405,7 @@ public class MetricsService {
                 return greenColor;
             }
         }
-        logger.info("Chose color.");
+        logger.info("Color selected.");
         return whiteColor;
     }
 }
