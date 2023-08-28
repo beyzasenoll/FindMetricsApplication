@@ -254,7 +254,7 @@ public class MetricsService {
         logger.info("Finding last found timestamp for metric: {}", metric);
 
         Instant currentInstant = Instant.now();
-        Instant startInstant = currentInstant.minus(1, ChronoUnit.DAYS);
+        Instant startInstant = currentInstant.minus(1, ChronoUnit.HOURS);
 
 
         long endTimestampSeconds = currentInstant.getEpochSecond();
@@ -266,14 +266,15 @@ public class MetricsService {
             PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
             if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
                 Instant maxLastValueTimestamp = getLastPeakTimestamp(prometheusMetricResponseTimestamp);
+
                 if (maxLastValueTimestamp != null) {
                     logger.info("Returning max last value timestamp for metric: {}", metric);
                     return maxLastValueTimestamp;
                 }
             }
 
-            startTimestampSeconds -= Duration.ofDays(1).toSeconds();
-            endTimestampSeconds -= Duration.ofDays(1).toSeconds();
+            startTimestampSeconds -= Duration.ofHours(1).toSeconds();
+            endTimestampSeconds -= Duration.ofHours(1).toSeconds();
         }
 
         logger.info("No valid timestamp found within the specified range for metric: {}", metric);
@@ -282,70 +283,42 @@ public class MetricsService {
 
     }
 
-    private Instant getMaxLastValueTimestamp(PrometheusMetricResponseTimestamp response) {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
-        logger.info("Getting max value of timestamp from Prometheus response");
-
-        List<Result> results = response.getData().getResult();
-        Double maxLastValue = null;
-
-        for (Result result : results) {
-            List<List<Double>> values = result.getValues();
-            if (values != null && !values.isEmpty()) {
-                Double lastValue = values.get(values.size() - 1).get(0);
-                if (maxLastValue == null || lastValue > maxLastValue) {
-                    maxLastValue = lastValue;
-                }
-            }
-        }
-
-        if (maxLastValue != null) {
-            long epochSeconds = maxLastValue.longValue();
-            logger.info("Found max value of timestamp from Prometheus response");
-            return Instant.ofEpochSecond(epochSeconds);
-        }
-
-        logger.info("No valid max value timestamp found in Prometheus response");
-        return null;
-    }
-
     private Instant getLastPeakTimestamp(PrometheusMetricResponseTimestamp response) {
-
         List<Result> results = response.getData().getResult();
-        List<List<Double>> allSubLists = new ArrayList<>();
         List<Double> currentSubList = new ArrayList<>();
-        List<Double> firstElementsOfAllSubLists = new ArrayList<>();
-
 
         for (Result result : results) {
             List<List<Double>> values = result.getValues();
             if (values != null && !values.isEmpty()) {
                 int index = values.size() - 1;
                 while (index >= 0) {
-                    String numericValue = values.get(index).get(1).toString();
-                    if (!numericValue.contains("e") && !numericValue.contains("E")) {
+                    Double numericValue = values.get(index).get(1);
+                    if (numericValue != 0.0 && !isScientificNotation(numericValue)) {
                         currentSubList.add(values.get(index).get(0));
                     } else {
                         if (!currentSubList.isEmpty()) {
-                            allSubLists.add(new ArrayList<>(currentSubList));
-                            currentSubList.clear();
+                            break;
                         }
                     }
                     index--;
                 }
             }
         }
-        for (int i=0;i<allSubLists.size();i++) {
-            if (!allSubLists.get(i).isEmpty()) {
-                firstElementsOfAllSubLists.add(allSubLists.get(i).get(0));
-            }
-        }
-        if (!firstElementsOfAllSubLists.isEmpty() && firstElementsOfAllSubLists.get(0) != null) {
-            long epochSeconds = firstElementsOfAllSubLists.get(0).longValue();
+
+        if (!currentSubList.isEmpty()) {
+            Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
+            long epochSeconds = maxPeakValueTimestamp.longValue();
             return Instant.ofEpochSecond(epochSeconds);
         }
+
         return null;
     }
+
+    private boolean isScientificNotation(Double value) {
+        String numericValue = value.toString();
+        return numericValue.contains("e") || numericValue.contains("E");
+    }
+
 
     public String findLastFoundTimestampAsString(Instant lastFoundInstant) {
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
@@ -365,9 +338,10 @@ public class MetricsService {
         String apiUrl = "http://localhost:9090";
         final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Creating URL");
+        String encodedQuery = "sum(" + query + ")";
         String queryUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
                 .path("/api/v1/query_range")
-                .queryParam("query", "sum(" + query + ")")
+                .queryParam("query", encodedQuery)
                 .queryParam("start", startTimestamp)
                 .queryParam("end", endTimestamp)
                 .queryParam("step", step)

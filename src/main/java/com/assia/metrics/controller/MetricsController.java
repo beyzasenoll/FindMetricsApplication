@@ -36,7 +36,7 @@ public class MetricsController {
         model.addAttribute("nonExistingAlgorithms", resultObject.getNonExistingAlgorithms());
         model.addAttribute("differentPrefixAlgorithmList", resultObject.getDifferentPrefixAlgorithmsList());
 
-        logger.info("Adding metrics data to the model.");
+        logger.info("Adding metric data to the model.");
         return "index";
     }
 }
