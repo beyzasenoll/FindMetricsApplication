@@ -1,5 +1,6 @@
 package com.assia.metrics.domain.service;
 
+import com.assia.metrics.domain.model.MetricsTime;
 import com.assia.metrics.domain.model.PrometheusMetricResponse;
 import com.assia.metrics.domain.model.PrometheusMetricResponseTimestamp;
 import com.assia.metrics.domain.model.Result;
@@ -130,12 +131,9 @@ public class MetricsService {
                         algorithmData.put("metricResponse", metricResponse);
                         algorithmData.put("timestamp", timestampAsString);
                         algorithmData.put("color", color);
-
                         differentPrefixAlgorithmsList.add(algorithmData);
-
                     }
                 }
-
                 if (!found) {
                     nonExistingAlgorithms.add(algorithm);
                 }
@@ -264,31 +262,85 @@ public class MetricsService {
         while (startTimestampSeconds < endTimestampSeconds && currentInstant.getEpochSecond() - startTimestampSeconds <= dateDuration * 86400) {
             logger.info("Fetching data for metric {} with start timestamp {} and end timestamp {}", metric, startTimestampSeconds, endTimestampSeconds);
             PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
-            if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
-                Instant maxLastValueTimestamp = getLastPeakTimestamp(prometheusMetricResponseTimestamp);
 
-                if (maxLastValueTimestamp != null) {
+            MetricsTime metricsTime = null;
+
+            if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
+                metricsTime = getLastPeakTimestamp(prometheusMetricResponseTimestamp);
+
+                if (metricsTime.type.equals("OneHourMetric") && metricsTime.value != null) {
                     logger.info("Returning max last value timestamp for metric: {}", metric);
-                    return maxLastValueTimestamp;
+                    return metricsTime.value;
                 }
+            }
+
+            if (metricsTime.type.equals("FifteenMinMetric")) {
+                startInstant = currentInstant.minus(15, ChronoUnit.MINUTES);
+                endTimestampSeconds = currentInstant.getEpochSecond();
+                startTimestampSeconds = startInstant.getEpochSecond();
+                prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
+                metricsTime = getLastFifteenPeakTimestamp(prometheusMetricResponseTimestamp);
+                return metricsTime.value;
             }
 
             startTimestampSeconds -= Duration.ofHours(1).toSeconds();
             endTimestampSeconds -= Duration.ofHours(1).toSeconds();
+
         }
 
         logger.info("No valid timestamp found within the specified range for metric: {}", metric);
         return null;
-
-
     }
 
-    private Instant getLastPeakTimestamp(PrometheusMetricResponseTimestamp response) {
+    private MetricsTime getLastFifteenPeakTimestamp(PrometheusMetricResponseTimestamp response) {
         List<Result> results = response.getData().getResult();
         List<Double> currentSubList = new ArrayList<>();
 
+        findMaxValue(results, currentSubList);
+
+        Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
+        long epochSeconds = maxPeakValueTimestamp.longValue();
+
+        MetricsTime metricsTime = new MetricsTime();
+        metricsTime.type = "FifteenMinMetric";
+        metricsTime.value = Instant.ofEpochSecond(epochSeconds);
+
+        return metricsTime;
+    }
+
+    private MetricsTime getLastPeakTimestamp(PrometheusMetricResponseTimestamp response) {
+        List<Result> results = response.getData().getResult();
+        List<Double> currentSubList = new ArrayList<>();
+
+        var values = findMaxValue(results, currentSubList);
+
+        if (values != null && values.size() == currentSubList.size()) {
+            MetricsTime metricsTime = new MetricsTime();
+            metricsTime.type = "FifteenMinMetric";
+            metricsTime.value = null;
+            return metricsTime;
+        }
+
+        if (!currentSubList.isEmpty()) {
+            Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
+            long epochSeconds = maxPeakValueTimestamp.longValue();
+            MetricsTime metricsTime = new MetricsTime();
+            metricsTime.type = "OneHourMetric";
+            metricsTime.value = Instant.ofEpochSecond(epochSeconds);
+            return metricsTime;
+        }
+
+        MetricsTime metricsTime = new MetricsTime();
+        metricsTime.type = "NullMetric";
+        metricsTime.value = null;
+        return metricsTime;
+    }
+
+    private List<List<Double>> findMaxValue(List<Result> results, List<Double> currentSubList) {
+        List<List<Double>> values = null;
+
         for (Result result : results) {
-            List<List<Double>> values = result.getValues();
+            values = result.getValues();
             if (values != null && !values.isEmpty()) {
                 int index = values.size() - 1;
                 while (index >= 0) {
@@ -304,14 +356,7 @@ public class MetricsService {
                 }
             }
         }
-
-        if (!currentSubList.isEmpty()) {
-            Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
-            long epochSeconds = maxPeakValueTimestamp.longValue();
-            return Instant.ofEpochSecond(epochSeconds);
-        }
-
-        return null;
+        return values;
     }
 
     private boolean isScientificNotation(Double value) {
@@ -329,7 +374,6 @@ public class MetricsService {
             logger.info("Formatted timestamp to string");
             return formatter.format(lastFoundInstant);
         }
-
         logger.info("No timestamp provided for formatting");
         return null;
     }
