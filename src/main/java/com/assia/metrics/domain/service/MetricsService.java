@@ -16,6 +16,7 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -102,7 +103,8 @@ public class MetricsService {
             futures.add(executorService.submit(() -> {
                 boolean found = false;
                 String color = "white";
-                String timestampAsString;
+                String timestampUTC;
+                String timestampLocal;
                 Instant timestamp;
 
                 for (String metricResponse : metricsFromPrometheus) {
@@ -112,12 +114,15 @@ public class MetricsService {
                     if (prefixedMetric.equals(metricResponse)) {
                         found = true;
                         timestamp = findLastFoundTimestamp(prefixedMetric);
-                        timestampAsString = findLastFoundTimestampAsString(timestamp);
+                        timestampUTC = findLastFoundTimestampAsString(timestamp, ZoneOffset.UTC);
+                        timestampLocal = findLastFoundTimestampAsString(timestamp, ZoneId.of("Europe/Istanbul"));
                         color = getColorForTimestamp(timestamp);
+
 
                         algorithmData.put("algorithm", algorithm);
                         algorithmData.put("prefixedMetric", prefixedMetric);
-                        algorithmData.put("timestamp", timestampAsString);
+                        algorithmData.put("timestampUTC", timestampUTC);
+                        algorithmData.put("timestampLocal", timestampLocal);
                         algorithmData.put("color", color);
 
                         existingAlgorithmsList.add(algorithmData);
@@ -126,12 +131,14 @@ public class MetricsService {
                     } else if (metricResponse.contains(algorithm)) {
                         found = true;
                         timestamp = findLastFoundTimestamp(metricResponse);
-                        timestampAsString = findLastFoundTimestampAsString(timestamp);
+                        timestampUTC = findLastFoundTimestampAsString(timestamp, ZoneOffset.UTC);
+                        timestampLocal = findLastFoundTimestampAsString(timestamp, ZoneId.of("Europe/Istanbul"));
                         color = getColorForTimestamp(timestamp);
 
                         algorithmData.put("algorithm", algorithm);
                         algorithmData.put("metricResponse", metricResponse);
-                        algorithmData.put("timestamp", timestampAsString);
+                        algorithmData.put("timestampUTC", timestampUTC);
+                        algorithmData.put("timestampLocal", timestampLocal);
                         algorithmData.put("color", color);
                         differentPrefixAlgorithmsList.add(algorithmData);
                     }
@@ -251,32 +258,24 @@ public class MetricsService {
         Instant currentInstant = Instant.now();
         Instant startInstant = currentInstant.minus(controlRange, ChronoUnit.MINUTES);
 
-
         long endTimestampSeconds = currentInstant.getEpochSecond();
         long startTimestampSeconds = startInstant.getEpochSecond();
+        final int SECONDS_IN_DAY = 86400;
 
-
-        while (startTimestampSeconds < endTimestampSeconds && currentInstant.getEpochSecond() - startTimestampSeconds <= dateDuration * 86400) {
+        while (startTimestampSeconds < endTimestampSeconds && currentInstant.getEpochSecond() - startTimestampSeconds <= dateDuration * SECONDS_IN_DAY) {
             PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
 
-            MetricsTime metricsTime = null;
+            MetricsTime metricsTime = getLastPeakTimestamp(prometheusMetricResponseTimestamp);
 
-            if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
-                metricsTime = getLastPeakTimestamp(prometheusMetricResponseTimestamp);
-
-                if (metricsTime.time.equals("OneHourMetric") && metricsTime.value != null) {
+            if (metricsTime != null && metricsTime.value != null) {
+                if (metricsTime.time.equals("OneHourMetric") || metricsTime.time.equals("CurrentMetric")) {
                     logger.info("Returning max last value timestamp for metric: {}", metric);
                     return metricsTime.value;
                 }
             }
 
-            if (metricsTime.time.equals("CurrentMetric") && metricsTime.value != null) {
-                return metricsTime.value;
-            }
-
             startTimestampSeconds -= Duration.ofMinutes(controlRange).toSeconds();
             endTimestampSeconds -= Duration.ofMinutes(controlRange).toSeconds();
-
         }
 
         logger.info("No valid timestamp found within the specified range for metric: {}", metric);
@@ -285,16 +284,16 @@ public class MetricsService {
 
     private MetricsTime getLastPeakTimestamp(PrometheusMetricResponseTimestamp response) {
         List<Result> results = response.getData().getResult();
-        List<Double> currentSubList = new ArrayList<>();
-        List<List<Double>> values = findMaxValue(results, currentSubList);
+        List<Double> maxNumericValues = new ArrayList<>();
+        List<List<Double>> values = findMaxNumericValues(results, maxNumericValues);
 
         MetricsTime metricsTime = new MetricsTime();
 
-        if (values != null && values.size() == currentSubList.size()) {
+        if (values != null && values.size() == maxNumericValues.size()) {
             metricsTime.time = "CurrentMetric";
             metricsTime.value = Instant.now();
-        } else if (!currentSubList.isEmpty()) {
-            Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
+        } else if (!maxNumericValues.isEmpty()) {
+            Double maxPeakValueTimestamp = maxNumericValues.get(maxNumericValues.size() - 1);
             long epochSeconds = maxPeakValueTimestamp.longValue();
             metricsTime.time = "OneHourMetric";
             metricsTime.value = Instant.ofEpochSecond(epochSeconds);
@@ -305,29 +304,28 @@ public class MetricsService {
         return metricsTime;
     }
 
-    private List<List<Double>> findMaxValue(List<Result> results, List<Double> currentSubList) {
+    private List<List<Double>> findMaxNumericValues(List<Result> results, List<Double> maxNumericValues) {
         List<List<Double>> values = null;
 
         for (Result result : results) {
             values = result.getValues();
+
             if (values != null && !values.isEmpty()) {
-                int index = values.size() - 1;
-                while (index >= 0) {
+                for (int index = values.size() - 1; index >= 0; index--) {
                     Double numericValue = values.get(index).get(1);
                     if (numericValue != 0.0 && !isScientificNotation(numericValue)) {
-                        currentSubList.add(values.get(index).get(0));
-                    } else {
-                        if (!currentSubList.isEmpty()) {
-                            break;
-                        }
+                        maxNumericValues.add(values.get(index).get(0));
+                    } else if (!maxNumericValues.isEmpty()) {
+                        break;
                     }
-                    index--;
                 }
             }
         }
-        logger.info("Created currentSubList");
+
+        logger.info("Created maxNumericValues");
         return values;
     }
+
 
     private boolean isScientificNotation(Double value) {
         String numericValue = value.toString();
@@ -335,16 +333,17 @@ public class MetricsService {
     }
 
 
-    public String findLastFoundTimestampAsString(Instant lastFoundInstant) {
+    public String findLastFoundTimestampAsString(Instant lastFoundInstant, ZoneId zoneId) {
 
         if (lastFoundInstant != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").withZone(ZoneOffset.UTC);
-            logger.info("Formatted timestamp to string");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").withZone(zoneId);
+            logger.info("Formatted timestamp to string in local time");
             return formatter.format(lastFoundInstant);
         }
         logger.info("No timestamp provided for formatting");
         return null;
     }
+
 
     private PrometheusMetricResponseTimestamp createUrlAndFetchData(String query, long startTimestamp, long endTimestamp, int step) {
         String apiUrl = "http://localhost:9090";
