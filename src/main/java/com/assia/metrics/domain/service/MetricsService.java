@@ -104,7 +104,6 @@ public class MetricsService {
                 boolean found = false;
                 String color = "white";
                 String timestampUTC;
-                String timestampLocal;
                 Instant timestamp;
 
                 for (String metricResponse : metricsFromPrometheus) {
@@ -115,14 +114,12 @@ public class MetricsService {
                         found = true;
                         timestamp = findLastFoundTimestamp(prefixedMetric);
                         timestampUTC = findLastFoundTimestampAsString(timestamp, ZoneOffset.UTC);
-                        timestampLocal = findLastFoundTimestampAsString(timestamp, ZoneId.of("Europe/Istanbul"));
                         color = getColorForTimestamp(timestamp);
 
 
                         algorithmData.put("algorithm", algorithm);
                         algorithmData.put("prefixedMetric", prefixedMetric);
                         algorithmData.put("timestampUTC", timestampUTC);
-                        algorithmData.put("timestampLocal", timestampLocal);
                         algorithmData.put("color", color);
 
                         existingAlgorithmsList.add(algorithmData);
@@ -132,13 +129,11 @@ public class MetricsService {
                         found = true;
                         timestamp = findLastFoundTimestamp(metricResponse);
                         timestampUTC = findLastFoundTimestampAsString(timestamp, ZoneOffset.UTC);
-                        timestampLocal = findLastFoundTimestampAsString(timestamp, ZoneId.of("Europe/Istanbul"));
                         color = getColorForTimestamp(timestamp);
 
                         algorithmData.put("algorithm", algorithm);
                         algorithmData.put("metricResponse", metricResponse);
                         algorithmData.put("timestampUTC", timestampUTC);
-                        algorithmData.put("timestampLocal", timestampLocal);
                         algorithmData.put("color", color);
                         differentPrefixAlgorithmsList.add(algorithmData);
                     }

@@ -52,11 +52,7 @@
                                   th:title="${existingAlgorithm['prefixedMetric']}"></span>
                             <br/>
                             <span th:text="'Timestamp UTC: ' + ${existingAlgorithm['timestampUTC']}"
-                                  th:style="'color: ' + ${existingAlgorithm['color']}"></span>
-                            <br/>
-                            <span th:text="'Timestamp Local: ' + ${existingAlgorithm['timestampLocal']}"
-                                  th:style="'color: ' + ${existingAlgorithm['color']}"></span>
-                        </td>
+                                  th:style="'color: ' + ${existingAlgorithm['color']}"></span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -100,9 +96,6 @@
                             <span th:text="${prefixEntry['algorithm']}" th:title="${prefixEntry['metricResponse']}"></span>
                             <br/>
                             <span th:text="'Timestamp UTC: ' + ${prefixEntry['timestampUTC']}"
-                                  th:style="'color: ' + ${prefixEntry['color']}"></span>
-                            <br/>
-                            <span th:text="' Timestamp Local: ' + ${prefixEntry['timestampLocal']}"
                                   th:style="'color: ' + ${prefixEntry['color']}"></span>
                         </td>
                     </tr>
