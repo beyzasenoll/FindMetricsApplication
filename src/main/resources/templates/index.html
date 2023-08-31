@@ -51,7 +51,7 @@
                             <span th:text="${existingAlgorithm['algorithm']}"
                                   th:title="${existingAlgorithm['prefixedMetric']}"></span>
                             <br/>
-                            <span th:text="'Timestamp: ' + ${existingAlgorithm['timestamp']}"
+                            <span th:text="'Timestamp UTC: ' + ${existingAlgorithm['timestamp']}"
                                   th:style="'color: ' + ${existingAlgorithm['color']}"></span>
                             </span>
                         </td>
@@ -98,7 +98,7 @@
                             <span th:text="${prefixEntry['algorithm']}"
                                   th:title="${prefixEntry['metricResponse']}"></span>
                             <br/>
-                            <span th:text="'Timestamp: ' + ${prefixEntry['timestamp']}"
+                            <span th:text="'Timestamp UTC: '+ ${prefixEntry['timestamp']}"
                                   th:style="'color: ' + ${prefixEntry['color']}"></span>
                             </span>
                             </span>

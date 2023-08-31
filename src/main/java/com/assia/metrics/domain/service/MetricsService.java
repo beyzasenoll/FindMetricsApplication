@@ -33,8 +33,9 @@ import java.util.concurrent.TimeUnit;
 public class MetricsService {
 
     private final WebClient webClient;
+    final Logger logger = LoggerFactory.getLogger(MetricsService.class);
 
-    //for only local test purposes
+
     @Value("${metrics.response.filepath}")
     private String metricResponseFilePath;
     @Value("${prefix}")
@@ -58,6 +59,8 @@ public class MetricsService {
 
     @Value("${step}")
     int step;
+    @Value("${control.range}")
+    private int controlRange;
     @Value("${timestamp.color.before.one.day}")
     private String redColor;
 
@@ -77,7 +80,6 @@ public class MetricsService {
     }
 
     public ResultObject findAlgorithmMetrics() throws IOException {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         resetLogFile();
 
         PrometheusMetricResponse prometheusMetricResponses;
@@ -165,7 +167,6 @@ public class MetricsService {
 
 
     public List<String> readAlgorithmsFromExternalClass() {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Reading algorithms from external class.");
 
         List<String> algorithmList = new ArrayList<>();
@@ -189,7 +190,6 @@ public class MetricsService {
     }
 
     public void deletePackage(String inputFilePath) {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         try {
             logger.debug("Deleting package statements from the file: {}", inputFilePath);
             File inputFile = new File(inputFilePath);
@@ -222,7 +222,6 @@ public class MetricsService {
     }
 
     public void deleteAlgorithmClassFile() {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         String classFilePath = externalClassFilePath + externalClassFileName + ".class";
         File classFile = new File(classFilePath);
 
@@ -238,7 +237,6 @@ public class MetricsService {
     }
 
     private void resetLogFile() {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         String logFileName = loggingFileName;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFileName, false))) {
         } catch (IOException e) {
@@ -248,11 +246,10 @@ public class MetricsService {
     }
 
     public Instant findLastFoundTimestamp(String metric) {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Finding last found timestamp for metric: {}", metric);
 
         Instant currentInstant = Instant.now();
-        Instant startInstant = currentInstant.minus(1, ChronoUnit.HOURS);
+        Instant startInstant = currentInstant.minus(controlRange, ChronoUnit.MINUTES);
 
 
         long endTimestampSeconds = currentInstant.getEpochSecond();
@@ -260,7 +257,6 @@ public class MetricsService {
 
 
         while (startTimestampSeconds < endTimestampSeconds && currentInstant.getEpochSecond() - startTimestampSeconds <= dateDuration * 86400) {
-            logger.info("Fetching data for metric {} with start timestamp {} and end timestamp {}", metric, startTimestampSeconds, endTimestampSeconds);
             PrometheusMetricResponseTimestamp prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
 
             MetricsTime metricsTime = null;
@@ -268,23 +264,18 @@ public class MetricsService {
             if (prometheusMetricResponseTimestamp != null && prometheusMetricResponseTimestamp.getData().getResult() != null) {
                 metricsTime = getLastPeakTimestamp(prometheusMetricResponseTimestamp);
 
-                if (metricsTime.type.equals("OneHourMetric") && metricsTime.value != null) {
+                if (metricsTime.time.equals("OneHourMetric") && metricsTime.value != null) {
                     logger.info("Returning max last value timestamp for metric: {}", metric);
                     return metricsTime.value;
                 }
             }
 
-            if (metricsTime.type.equals("FifteenMinMetric")) {
-                startInstant = currentInstant.minus(15, ChronoUnit.MINUTES);
-                endTimestampSeconds = currentInstant.getEpochSecond();
-                startTimestampSeconds = startInstant.getEpochSecond();
-                prometheusMetricResponseTimestamp = createUrlAndFetchData(metric, startTimestampSeconds, endTimestampSeconds, step);
-                metricsTime = getLastFifteenPeakTimestamp(prometheusMetricResponseTimestamp);
+            if (metricsTime.time.equals("CurrentMetric") && metricsTime.value != null) {
                 return metricsTime.value;
             }
 
-            startTimestampSeconds -= Duration.ofHours(1).toSeconds();
-            endTimestampSeconds -= Duration.ofHours(1).toSeconds();
+            startTimestampSeconds -= Duration.ofMinutes(controlRange).toSeconds();
+            endTimestampSeconds -= Duration.ofMinutes(controlRange).toSeconds();
 
         }
 
@@ -292,47 +283,25 @@ public class MetricsService {
         return null;
     }
 
-    private MetricsTime getLastFifteenPeakTimestamp(PrometheusMetricResponseTimestamp response) {
-        List<Result> results = response.getData().getResult();
-        List<Double> currentSubList = new ArrayList<>();
-
-        findMaxValue(results, currentSubList);
-
-        Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
-        long epochSeconds = maxPeakValueTimestamp.longValue();
-
-        MetricsTime metricsTime = new MetricsTime();
-        metricsTime.type = "FifteenMinMetric";
-        metricsTime.value = Instant.ofEpochSecond(epochSeconds);
-
-        return metricsTime;
-    }
-
     private MetricsTime getLastPeakTimestamp(PrometheusMetricResponseTimestamp response) {
         List<Result> results = response.getData().getResult();
         List<Double> currentSubList = new ArrayList<>();
-
-        var values = findMaxValue(results, currentSubList);
-
-        if (values != null && values.size() == currentSubList.size()) {
-            MetricsTime metricsTime = new MetricsTime();
-            metricsTime.type = "FifteenMinMetric";
-            metricsTime.value = null;
-            return metricsTime;
-        }
-
-        if (!currentSubList.isEmpty()) {
-            Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
-            long epochSeconds = maxPeakValueTimestamp.longValue();
-            MetricsTime metricsTime = new MetricsTime();
-            metricsTime.type = "OneHourMetric";
-            metricsTime.value = Instant.ofEpochSecond(epochSeconds);
-            return metricsTime;
-        }
+        List<List<Double>> values = findMaxValue(results, currentSubList);
 
         MetricsTime metricsTime = new MetricsTime();
-        metricsTime.type = "NullMetric";
-        metricsTime.value = null;
+
+        if (values != null && values.size() == currentSubList.size()) {
+            metricsTime.time = "CurrentMetric";
+            metricsTime.value = Instant.now();
+        } else if (!currentSubList.isEmpty()) {
+            Double maxPeakValueTimestamp = currentSubList.get(currentSubList.size() - 1);
+            long epochSeconds = maxPeakValueTimestamp.longValue();
+            metricsTime.time = "OneHourMetric";
+            metricsTime.value = Instant.ofEpochSecond(epochSeconds);
+        } else {
+            metricsTime.time = "NullMetric";
+            metricsTime.value = null;
+        }
         return metricsTime;
     }
 
@@ -356,6 +325,7 @@ public class MetricsService {
                 }
             }
         }
+        logger.info("Created currentSubList");
         return values;
     }
 
@@ -366,8 +336,6 @@ public class MetricsService {
 
 
     public String findLastFoundTimestampAsString(Instant lastFoundInstant) {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
-        logger.info("Formatting timestamp to string");
 
         if (lastFoundInstant != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").withZone(ZoneOffset.UTC);
@@ -380,7 +348,6 @@ public class MetricsService {
 
     private PrometheusMetricResponseTimestamp createUrlAndFetchData(String query, long startTimestamp, long endTimestamp, int step) {
         String apiUrl = "http://localhost:9090";
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Creating URL");
         String encodedQuery = "sum(" + query + ")";
         String queryUrl = UriComponentsBuilder.fromHttpUrl(apiUrl)
@@ -398,7 +365,6 @@ public class MetricsService {
     }
 
     private <T> T fetchDataFromApiUrl(String url, Class<T> responseType) {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Fetching Data from API url");
         return webClient.get()
                 .uri(url)
@@ -408,19 +374,17 @@ public class MetricsService {
     }
 
     private String getColorForTimestamp(Instant timestamp) {
-        final Logger logger = LoggerFactory.getLogger(MetricsService.class);
         logger.info("Getting Color");
         if (timestamp != null) {
             Instant now = Instant.now();
             Instant oneDayAgo = now.minus(Duration.ofDays(1));
-            Instant sixHoursAgo = now.minus(Duration.ofHours(6));
 
             if (timestamp.isBefore(oneDayAgo)) {
                 return redColor;
-            } else if (timestamp.isBefore(sixHoursAgo)) {
-                return yellowColor;
             } else if (timestamp.truncatedTo(ChronoUnit.MINUTES).equals(now.truncatedTo(ChronoUnit.MINUTES))) {
                 return greenColor;
+            } else if (timestamp.isAfter(oneDayAgo) && timestamp.isBefore(now)) {
+                return yellowColor;
             }
         }
         logger.info("Color selected.");

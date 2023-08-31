@@ -6,6 +6,6 @@ import java.time.Instant;
 
 @Data
 public class MetricsTime {
-    public String type;
+    public String time;
     public Instant value;
 }
