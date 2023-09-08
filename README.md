@@ -7,7 +7,8 @@ I developed this project during my software internship. This project is designed
 ## Requirements
 To run and use this project, the following requirements are necessary:
 
-Java 8 or a newer version
+Java JDK 11
+
 
 ### Dependencies
 The project includes the following dependencies:
