@@ -33,3 +33,8 @@ These dependencies will be resolved automatically by Maven, and the project's de
 
 ## Usage
 Go to http://localhost:8080 in a web browser.
+
+
+## Metric Report Dashboard UI
+<img width="1438" alt="metric_report_dashboard" src="https://github.com/beyzasenoll/FindMetricsApplication/assets/104395092/101e0ecb-2cff-453e-a514-c1cdaba3d905">
+
